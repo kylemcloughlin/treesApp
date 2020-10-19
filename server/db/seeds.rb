@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# $LOAD_PATH.unshift("/Users/kyle/code/practiceApps/trees/treesApp/server/db/seed_data.rb")
+lib = File.expand_path("../../lib", __FILE__)
+$:.unshift(lib)
+require "seed_data"
+# include TreeData
+# include TreeData
+
+puts TreeData::Trees[0]
+TreeData::Trees.each do |x|
+  Tree.create({
+    geo_id: x["GEO_ID"],
+    x: x["X"],
+    y: x["Y"],
+    struct_id: x["STRUCTID"],
+    address: x["ADDRESS"],
+    name: x["NAME"],
+    dbh_trunk: x["DBH_TRUNK"],
+    tree_posit: x["TREE_POSIT"],
+    common_name: x["COMMON_NAM"],
+    botanical_name: x["BOTANICAL_"],
+    geometry_type: x["geometry_type"],
+    lat_coordinate: x["coordinates_lat"],
+    long_coordinate: x["coordinates_long"],
+
+  })
+end
