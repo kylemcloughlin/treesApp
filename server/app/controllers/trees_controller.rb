@@ -3,6 +3,7 @@ class TreesController < ApplicationController
 
   # GET /trees
   def index
+   puts 'hits backend'
     @trees = Tree.all
 
     render json: @trees

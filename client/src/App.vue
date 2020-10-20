@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="trees App"/>
+    <Header msg="trees App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/header.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header
   }
 }
 </script>
