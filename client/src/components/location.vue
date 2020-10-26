@@ -12,7 +12,8 @@ export default {
    name: "Location",
   props: {
     msg: String
-  }, methods: {
+  }, 
+  methods: {
     click(e) {
      e.preventDefault();
      console.log("!!")

@@ -2,9 +2,9 @@
   <div id="app">
     <Header msg="trees App"/>
     <Location msg='' v-on:setSearch='setSearch'/>
-    <Species msg=''/>
-    <Diameter msg=''/>
-    <SearchBar msg="location"/>
+    <Species msg=''  v-on:setSearch='setSearch'/>
+    <Diameter msg=''  v-on:setSearch='setSearch'/>
+    <SearchBar  v-bind:trees="this.baseTrees" msg="location"/>
   </div>
 </template>
 
@@ -29,8 +29,32 @@ export default {
    
    setSearch(x) {
       console.log('set search', x)
+    },
+
+    getTrees() {
+       console.log('hi   errret');
+   
+      // e.preventDefault();
+ this.$http.plain.get('/trees')
+
+.then( response => this.baseTrees = response.data)
+  .then(() => console.log(this.baseTrees))
+  .catch(err => console.log(":(",err))
+
+ console.log(this.baseTrees)
+}
+  },
+  created () {
+    this.getTrees();
+  },
+  data() {
+    return {
+      baseTrees: [
+
+      ]
     }
   }
+
 }
 </script>
 

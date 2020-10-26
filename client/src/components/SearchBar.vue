@@ -2,7 +2,14 @@
 <div>
   <!-- <h2>{{msg}}</h2> -->
    <form @submit="searchTree">
-  <input type="text" placeholder='test'/>
+     <select name="tree-selector" >
+<!-- <div v-bind:key="tree.x" v-for="tree in trees"> -->
+  <option v-bind:key="tree.x" v-for="tree in trees">
+   {{tree.common_name}}
+    </option>
+  <!-- </div> -->
+</select>
+  <input type="text" :placeholder="this.placeHolderValue"/>
     <input type="submit" value="submitboi" class='btn' @submit.prevent="searchTree"/>
   </form>
 </div>
@@ -13,8 +20,13 @@
 
 export default {
   name: "SearchBar",
+  data() {
+    return {
+      placeHolderValue: 'weee'
+    }
+  },
   props: {
-    msg: String
+    trees: Array
   },
   methods: {
      searchTree(e) {
@@ -25,10 +37,11 @@ export default {
   .then( response => response.data)
   .then(data => console.log(data[0]))
   .catch(err => console.log(":(",err))
-//   axios.get('http://localhost:3000/trees')
-//     .then(res => console.log(res) )
-//     .catch(err=> console.log(err))
+
  }
+},
+created(){
+  console.log(this.trees)
 }
     
   
