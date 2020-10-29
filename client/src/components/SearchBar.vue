@@ -4,7 +4,7 @@
    <form @submit="searchTree">
      <select name="tree-selector" >
 <!-- <div v-bind:key="tree.x" v-for="tree in trees"> -->
-  <option v-bind:key="tree.x" v-for="tree in trees">
+  <option v-bind:key="tree.x" v-for="tree in trees" value="tree.x">
    {{tree.common_name}}
     </option>
   <!-- </div> -->
