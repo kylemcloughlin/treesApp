@@ -2,17 +2,17 @@
   <div>
     <!-- <h2>{{msg}}</h2> -->
     <form @submit="searchTree">
-      <select  v-if="this.search ===  'Species'" >
-        <option v-bind:key="tree.x" v-for="tree in trees" value="tree.x">{{tree.common_name}} {{tree.botanical_name}}</option>
+      <select  v-if="this.search ===  'Species'" v-model='output'>
+        <option v-bind:key="tree.x" v-for="tree in trees" >{{tree.common_name}} {{tree.botanical_name}}</option>
       </select>      
-       <select v-else-if="this.search ===  'Location'">
-        <option v-bind:key="tree.y" v-for="tree in trees" value="tree.y">{{tree.address}} {{tree.name}} </option>
+       <select v-else-if="this.search ===  'Location'"  v-model='output'>
+        <option v-bind:key="tree.y" v-for="tree in trees">{{tree.address}} {{tree.name}} </option>
       </select>      
-        <select v-else name="tree-selector">
-        <option  v-bind:key="tree.y" v-for="tree in trees" value="tree.x">{{tree.dbh_trunk}}</option>
+        <select v-else name="tree-selector"  v-model='output'>
+        <option  v-bind:key="tree.geo_id" v-for="tree in trees" >{{tree.dbh_trunk}}</option>
       </select>
-      <input type="text" :placeholder="this.search" />
-      <input type="submit" value="submitboi" class="btn" @submit.prevent="searchTree" />
+      <!-- <input type="text" :placeholder="this.search" /> -->
+      <input type="submit" value="submit" class="btn" @submit.prevent="searchTree" />
     </form>
   </div>
 </template>
@@ -25,7 +25,8 @@ export default {
   data() {
     return {
       trees: [],
-      dataSelect: 'Location'
+      dataSelect: 'Location',
+      output: ""
     };
   },
   props: {
@@ -34,14 +35,15 @@ export default {
   },
   methods: {
     searchTree(e) {
-      console.log("hit");
+      console.log("hit search");
+      console.log(this.output)
 
       e.preventDefault();
-      this.$http.plain
-        .get("/trees")
-        .then(response => response.data)
-        .then(data => console.log(data[0]))
-        .catch(err => console.log(":(", err));
+      // this.$http.plain
+      //   .get("/trees")
+      //   .then(response => response.data)
+      //   .then(data => console.log(data[0]))
+      //   .catch(err => console.log(":(", err));
     },
     getTrees() {
       console.log("hi   errret");
