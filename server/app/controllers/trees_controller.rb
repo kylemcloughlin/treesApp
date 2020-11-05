@@ -3,7 +3,6 @@ class TreesController < ApplicationController
 
   # GET /trees
   def index
-   puts 'hits backend'
     @trees = Tree.all
 
     render json: @trees
@@ -47,6 +46,6 @@ class TreesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tree_params
-      params.require(:tree).permit(:geo_id, :x, :y, :struct_id, :address, :name, :dbh_trunk, :tree_posit, :common_name, :botanical_name, :geometry_type, :coordinates)
+      params.require(:tree).permit(:common_name, :botancial_name, :type_id, :location_id, :dbh_trunk, :address, :name)
     end
 end

@@ -2,14 +2,18 @@
   <div>
     <!-- <h2>{{msg}}</h2> -->
     <form @submit="searchTree">
-      <select  v-if="this.search ===  'Species'" v-model='output'>
-        <option v-bind:key="tree.x" v-for="tree in trees" >{{tree.common_name}} {{tree.botanical_name}}</option>
-      </select>      
-       <select v-else-if="this.search ===  'Location'"  v-model='output'>
-        <option v-bind:key="tree.y" v-for="tree in trees">{{tree.address}} {{tree.name}} </option>
-      </select>      
-        <select v-else name="tree-selector"  v-model='output'>
-        <option  v-bind:key="tree.geo_id" v-for="tree in trees" >{{tree.dbh_trunk}}</option>
+      <select v-if="this.search ===  'types'" v-model="output">
+        <option
+          v-bind:key="tree.x"
+          v-for="tree in trees"
+          v-bind:value="tree.id"
+        >{{tree.common_name}} {{tree.botanical_name}}</option>
+      </select>
+      <select v-else-if="this.search ===  'locations'" v-model="output">
+        <option v-bind:key="tree.y" v-for="tree in trees">{{tree.address}} {{tree.name}}</option>
+      </select>
+      <select v-else name="tree-selector" v-model="output">
+        <option v-bind:key="tree.geo_id" v-for="tree in trees">{{tree.dbh_trunk}}</option>
       </select>
       <!-- <input type="text" :placeholder="this.search" /> -->
       <input type="submit" value="submit" class="btn" @submit.prevent="searchTree" />
@@ -25,7 +29,7 @@ export default {
   data() {
     return {
       trees: [],
-      dataSelect: 'Location',
+      dataSelect: "Location",
       output: ""
     };
   },
@@ -36,19 +40,21 @@ export default {
   methods: {
     searchTree(e) {
       console.log("hit search");
-      console.log(this.output)
-
+      console.log("######");
+      // console.log(this.search)
       e.preventDefault();
-      // this.$http.plain
-      //   .get("/trees")
-      //   .then(response => response.data)
-      //   .then(data => console.log(data[0]))
-      //   .catch(err => console.log(":(", err));
+    
+  
+      console.table(this.trees);
+      console.log("######");
+      this.$http.plain
+        .get(`/types/${this.output}`)
+        .then(response => console.log(response.data))
+        .catch(err => console.log(":(", err));
     },
     getTrees() {
-      console.log("hi   errret");
       this.$http.plain
-        .get("/trees")
+        .get("/types")
 
         .then(response => (this.trees = response.data))
         .then(() => console.log(this.trees))
@@ -61,7 +67,7 @@ export default {
   created() {
     this.getTrees();
     console.log(this.trees);
-    this.dataSelect =  this.search;
+    this.dataSelect = this.search;
   }
 };
 </script>

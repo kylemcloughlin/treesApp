@@ -16,7 +16,7 @@ export default {
     click(e) {
      e.preventDefault();
      console.log("!!")
-   this.$emit('setSearch', 'Species');
+   this.$emit('setSearch', 'types');
 
  }
 }

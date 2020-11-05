@@ -1,29 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  geo_id: 1
-  x: 1
-  'y': 1
-  struct_id: MyString
+  common_name: MyString
+  botancial_name: MyString
+  type: one
+  location: one
+  dbh_trunk: 1
   address: 1
   name: MyString
-  dbh_trunk: 1
-  tree_posit: 1
-  common_name: MyString
-  botanical_name: MyString
-  geometry_type: MyString
-  coordinates: 
 
 two:
-  geo_id: 1
-  x: 1
-  'y': 1
-  struct_id: MyString
+  common_name: MyString
+  botancial_name: MyString
+  type: two
+  location: two
+  dbh_trunk: 1
   address: 1
   name: MyString
-  dbh_trunk: 1
-  tree_posit: 1
-  common_name: MyString
-  botanical_name: MyString
-  geometry_type: MyString
-  coordinates: 

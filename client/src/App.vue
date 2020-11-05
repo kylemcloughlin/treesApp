@@ -27,11 +27,11 @@ export default {
   methods: {
     setSearch(x) {
       console.log("set search", x);
-      if (x === 'Species') {
-          console.log('species')
+      if (x === 'types') {
+          console.log('species/types')
           return this.baseSearch = x; 
 
-      } else if(  x === 'Location') {
+      } else if(  x === 'locations') {
           console.log('local')
 
           return this.baseSearch = x; 
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       baseTrees: [],
-      baseSearch: "Species"
+      baseSearch: "types"
     };
   }
 };

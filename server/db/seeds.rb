@@ -10,24 +10,51 @@ lib = File.expand_path("../../lib", __FILE__)
 $:.unshift(lib)
 require "seed_data"
 # include TreeData
-# include TreeData
 
-puts TreeData::Trees[0]
+puts TreeData::Trees[0]["X"]
 TreeData::Trees.each do |x|
-  Tree.create({
+  # Tree.create({
+  #   geo_id: x["GEO_ID"],
+  #   x: x["X"],
+  #   y: x["Y"],
+  #   struct_id: x["STRUCTID"],
+  #   address: x["ADDRESS"],
+  #   name: x["NAME"],
+  #   dbh_trunk: x["DBH_TRUNK"],
+  #   tree_posit: x["TREE_POSIT"],
+  #   common_name: x["COMMON_NAM"],
+  #   botanical_name: x["BOTANICAL_"],
+  #   geometry_type: x["geometry_type"],
+  #   lat_coordinate: x["coordinates_lat"],
+  #   long_coordinate: x["coordinates_long"],
+
+  # })
+
+  type = Type.find_or_create_by({
+    common_name: x["COMMON_NAM"],
+    botanical_name: x["BOTANICAL_"],
+  })
+  location = Location.find_or_create_by ({
+    address: x["ADDRESS"],
+    name: x["NAME"],
+    geometry_type: x["geometry_type"],
+    lat_coordinate: x["coordinates_lat"],
+    long_coordinate: x["coordinates_long"],
+    tree_posit: x["TREE_POSIT"],
     geo_id: x["GEO_ID"],
     x: x["X"],
     y: x["Y"],
     struct_id: x["STRUCTID"],
-    address: x["ADDRESS"],
-    name: x["NAME"],
-    dbh_trunk: x["DBH_TRUNK"],
-    tree_posit: x["TREE_POSIT"],
+  })
+  tree = Tree.create({
     common_name: x["COMMON_NAM"],
     botanical_name: x["BOTANICAL_"],
-    geometry_type: x["geometry_type"],
-    lat_coordinate: x["coordinates_lat"],
-    long_coordinate: x["coordinates_long"],
-
+    dbh_trunk: x["DBH_TRUNK"],
+    address: x["ADDRESS"],
+    name: x["NAME"],
+    type: type,
+    location: location,
   })
+
+  puts tree.id
 end
