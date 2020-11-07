@@ -5,6 +5,7 @@
     <Location msg v-on:setSearch="setSearch" />
     <Diameter msg v-on:setSearch="setSearch" />
     <SearchBar v-bind:search="this.baseSearch" msg="location" />
+    <Map />
   </div>
 </template>
 
@@ -14,6 +15,9 @@ import Location from "./components/location";
 import Diameter from "./components/diameter";
 import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
+import Map from './components/map';
+import dotenv from 'dotenv'
+dotenv.config()
 
 export default {
   name: "App",
@@ -22,7 +26,8 @@ export default {
     Location,
     Diameter,
     SearchBar,
-    Species
+    Species,
+    Map
   },
   methods: {
     setSearch(x) {
@@ -46,7 +51,8 @@ export default {
 
   },
   created() {
-    // this.getTrees();
+  
+
   },
   data() {
     return {

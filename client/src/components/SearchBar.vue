@@ -48,13 +48,13 @@ export default {
       console.table(this.trees);
       console.log("######");
       this.$http.plain
-        .get(`/types/${this.output}`)
+        .get(`/${this.search}/${this.output}`)
         .then(response => console.log(response.data))
         .catch(err => console.log(":(", err));
     },
     getTrees() {
       this.$http.plain
-        .get("/types")
+        .get(`/trees`)
 
         .then(response => (this.trees = response.data))
         .then(() => console.log(this.trees))

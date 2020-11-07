@@ -10,7 +10,9 @@ class LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    render json: @location
+    puts @location[:id]
+    puts @location.trees
+    render json: @location.trees
   end
 
   # POST /locations
@@ -39,13 +41,14 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def location_params
-      params.require(:location).permit(:address, :name, :geometry_type, :lat_coordinate, :long_coordinate, :geo_id, :x, :y, :struct_id, :tree_posit)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def location_params
+    params.require(:location).permit(:address, :name, :geometry_type, :lat_coordinate, :long_coordinate, :geo_id, :x, :y, :struct_id, :tree_posit)
+  end
 end

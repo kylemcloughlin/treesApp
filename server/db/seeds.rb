@@ -34,6 +34,7 @@ TreeData::Trees.each do |x|
     common_name: x["COMMON_NAM"],
     botanical_name: x["BOTANICAL_"],
   })
+
   location = Location.find_or_create_by ({
     address: x["ADDRESS"],
     name: x["NAME"],
@@ -55,6 +56,8 @@ TreeData::Trees.each do |x|
     type: type,
     location: location,
   })
-
+  puts "@@@@@@@@@"
   puts tree.id
+  puts tree.common_name
+  puts "@@@@@@@@@"
 end
