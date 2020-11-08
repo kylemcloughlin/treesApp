@@ -28,7 +28,9 @@ TreeData::Trees.each do |x|
   #   long_coordinate: x["coordinates_long"],
 
   # })
-
+  diameter = Diameter.find_or_create_by({
+    dbh_trunk: x["DBH_TRUNK"],
+  })
   type = Type.find_or_create_by({
     common_name: x["COMMON_NAM"],
     botanical_name: x["BOTANICAL_"],
@@ -54,6 +56,7 @@ TreeData::Trees.each do |x|
     tree_posit: x["TREE_POSIT"],
     type: type,
     location: location,
+    diameter: diameter,
   })
   puts "@@@@@@@@@"
   puts tree.id

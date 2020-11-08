@@ -17,7 +17,7 @@ export default {
     click(e) {
      e.preventDefault();
      console.log("!!")
-   this.$emit('setSearch', 'Diameter');
+   this.$emit('setSearch', 'diameters');
 
  }
 }

@@ -15,6 +15,7 @@
         v-bind:key="tree.id"
       v-bind:position="{lat:tree.long_coordinate, lng:tree.lat_coordinate}"
         :clickable="true" 
+         :icon="{ url: require('../assets/treeMarker.png')}" />
         :draggable="true" />
     </GmapMap>
   </div>

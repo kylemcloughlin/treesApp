@@ -2,18 +2,28 @@
 
 one:
   common_name: MyString
-  botancial_name: MyString
-  type: one
-  location: one
+  botanical_name: MyString
   dbh_trunk: 1
+  geometry_type: MyString
+  lat_coordinate: 1.5
+  long_coordinate: 1.5
+  tree_posit: 1
   address: 1
   name: MyString
+  type: one
+  location: one
+  diameter: one
 
 two:
   common_name: MyString
-  botancial_name: MyString
-  type: two
-  location: two
+  botanical_name: MyString
   dbh_trunk: 1
+  geometry_type: MyString
+  lat_coordinate: 1.5
+  long_coordinate: 1.5
+  tree_posit: 1
   address: 1
   name: MyString
+  type: two
+  location: two
+  diameter: two

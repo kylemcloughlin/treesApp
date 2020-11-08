@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_182936) do
+ActiveRecord::Schema.define(version: 2020_11_08_191434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "diameters", force: :cascade do |t|
+    t.integer "dbh_trunk"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "locations", force: :cascade do |t|
     t.integer "address"
@@ -38,8 +44,10 @@ ActiveRecord::Schema.define(version: 2020_11_05_182936) do
     t.string "name"
     t.bigint "type_id", null: false
     t.bigint "location_id", null: false
+    t.bigint "diameter_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["diameter_id"], name: "index_trees_on_diameter_id"
     t.index ["location_id"], name: "index_trees_on_location_id"
     t.index ["type_id"], name: "index_trees_on_type_id"
   end
@@ -51,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_11_05_182936) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "trees", "diameters"
   add_foreign_key "trees", "locations"
   add_foreign_key "trees", "types"
 end
