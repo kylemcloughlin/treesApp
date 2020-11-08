@@ -10,7 +10,10 @@
         >{{tree.common_name}} {{tree.botanical_name}}</option>
       </select>
       <select v-else-if="this.search === 'locations' " v-model="output">
-        <option v-bind:key="tree.y" v-for="tree in trees">{{tree.address}} {{tree.name}}</option>
+        <option v-bind:key="tree.y" 
+        v-for="tree in trees"
+       v-bind:value="tree.id"
+        >{{tree.address}} {{tree.name}}</option>
       </select>
       <select v-else name="tree-selector" v-model="output">
         <option v-bind:key="tree.geo_id" v-for="tree in trees">{{tree.dbh_trunk}}</option>

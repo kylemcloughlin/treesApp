@@ -34,17 +34,17 @@ export default {
     markerTrees() {
       console.log("POPOP", this.markerTrees);
       this.makeMarkers = true
-      for (let tree in this.markerTrees) {
-        // console.log(tree.id)
-        // console.log(tree.name)
+      for (let tree of this.markerTrees) {
+        console.log(tree.address)
+        console.log(tree.name)
         // console.log("???????", tree.long_coordinate)
         //  console.log("???????", tree.lat_coordinate)
         // let x = this.markerTrees[tree].long_coordinate
-        console.log( typeof this.markerTrees[tree].lat_coordinate)
-        console.log(this.markerTrees[tree].lat_coordinate)
-console.log()
-        console.log( typeof this.markerTrees[tree].long_coordinate)
-        console.log( this.markerTrees[tree].long_coordinate)
+//         console.log( typeof this.markerTrees[tree].lat_coordinate)
+//         console.log(this.markerTrees[tree].lat_coordinate)
+// console.log()
+//         console.log( typeof this.markerTrees[tree].long_coordinate)
+//         console.log( this.markerTrees[tree].long_coordinate)
 
 
         // console.log(x.isInteger())
