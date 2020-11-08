@@ -9,7 +9,7 @@
           v-bind:value="tree.id"
         >{{tree.common_name}} {{tree.botanical_name}}</option>
       </select>
-      <select v-else-if="this.search ===  'locations'" v-model="output">
+      <select v-else-if="this.search === 'locations' " v-model="output">
         <option v-bind:key="tree.y" v-for="tree in trees">{{tree.address}} {{tree.name}}</option>
       </select>
       <select v-else name="tree-selector" v-model="output">
@@ -45,16 +45,16 @@ export default {
       e.preventDefault();
     
   
-      console.table(this.trees);
-      console.log("######");
+      // this.$emit('update:myProp',response.data)
       this.$http.plain
         .get(`/${this.search}/${this.output}`)
-        .then(response => console.log(response.data))
+        .then(response => this.$emit('setTrees' ,response.data))
         .catch(err => console.log(":(", err));
+      console.log("######");
     },
     getTrees() {
       this.$http.plain
-        .get(`/trees`)
+        .get(`/${this.search}`)
 
         .then(response => (this.trees = response.data))
         .then(() => console.log(this.trees))
@@ -63,6 +63,14 @@ export default {
       console.log(this.baseTrees);
     }
   },
+
+ watch:{
+            search(){
+                 this.getTrees();
+
+            }
+  },
+
 
   created() {
     this.getTrees();

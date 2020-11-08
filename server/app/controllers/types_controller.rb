@@ -3,6 +3,8 @@ class TypesController < ApplicationController
 
   # GET /types
   def index
+  
+  puts "$$$$$$$$$$"
     @types = Type.all
 
     render json: @types

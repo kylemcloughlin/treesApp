@@ -4,8 +4,8 @@
     <Species msg v-on:setSearch="setSearch" />
     <Location msg v-on:setSearch="setSearch" />
     <Diameter msg v-on:setSearch="setSearch" />
-    <SearchBar v-bind:search="this.baseSearch" msg="location" />
-    <Map />
+    <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
+    <Map v-bind:markerTrees="this.searchedTrees"/>
   </div>
 </template>
 
@@ -16,8 +16,8 @@ import Diameter from "./components/diameter";
 import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
 import Map from './components/map';
-import dotenv from 'dotenv'
-dotenv.config()
+
+
 
 export default {
   name: "App",
@@ -33,11 +33,11 @@ export default {
     setSearch(x) {
       console.log("set search", x);
       if (x === 'types') {
-          console.log('species/types')
+          console.log('species/types', x)
           return this.baseSearch = x; 
 
       } else if(  x === 'locations') {
-          console.log('local')
+          console.log('local', x)
 
           return this.baseSearch = x; 
 
@@ -48,6 +48,10 @@ export default {
 
       }
     },
+    setTrees(x) {
+      console.log('hit app')
+     return this.searchedTrees = x;
+    }
 
   },
   created() {
@@ -57,7 +61,8 @@ export default {
   data() {
     return {
       baseTrees: [],
-      baseSearch: "types"
+      baseSearch: "types",
+      searchedTrees: []
     };
   }
 };

@@ -18,14 +18,10 @@ ActiveRecord::Schema.define(version: 2020_11_05_182936) do
   create_table "locations", force: :cascade do |t|
     t.integer "address"
     t.string "name"
-    t.string "geometry_type"
-    t.integer "lat_coordinate"
-    t.integer "long_coordinate"
     t.integer "geo_id"
-    t.integer "x"
-    t.integer "y"
+    t.float "x"
+    t.float "y"
     t.integer "struct_id"
-    t.integer "tree_posit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,11 +29,15 @@ ActiveRecord::Schema.define(version: 2020_11_05_182936) do
   create_table "trees", force: :cascade do |t|
     t.string "common_name"
     t.string "botanical_name"
-    t.bigint "type_id", null: false
-    t.bigint "location_id", null: false
     t.integer "dbh_trunk"
+    t.string "geometry_type"
+    t.float "lat_coordinate"
+    t.float "long_coordinate"
+    t.integer "tree_posit"
     t.integer "address"
     t.string "name"
+    t.bigint "type_id", null: false
+    t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["location_id"], name: "index_trees_on_location_id"

@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
 
   # GET /locations
   def index
+    puts "htithith"
     @locations = Location.all
 
     render json: @locations

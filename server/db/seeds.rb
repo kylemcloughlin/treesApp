@@ -24,7 +24,6 @@ TreeData::Trees.each do |x|
   #   tree_posit: x["TREE_POSIT"],
   #   common_name: x["COMMON_NAM"],
   #   botanical_name: x["BOTANICAL_"],
-  #   geometry_type: x["geometry_type"],
   #   lat_coordinate: x["coordinates_lat"],
   #   long_coordinate: x["coordinates_long"],
 
@@ -36,23 +35,23 @@ TreeData::Trees.each do |x|
   })
 
   location = Location.find_or_create_by ({
-    address: x["ADDRESS"],
-    name: x["NAME"],
-    geometry_type: x["geometry_type"],
-    lat_coordinate: x["coordinates_lat"],
-    long_coordinate: x["coordinates_long"],
-    tree_posit: x["TREE_POSIT"],
-    geo_id: x["GEO_ID"],
-    x: x["X"],
-    y: x["Y"],
-    struct_id: x["STRUCTID"],
-  })
+                                          address: x["ADDRESS"],
+                                          name: x["NAME"],
+                                          geo_id: x["GEO_ID"],
+                                          x: x["X"],
+                                          y: x["Y"],
+                                          struct_id: x["STRUCTID"],
+                                        })
   tree = Tree.create({
     common_name: x["COMMON_NAM"],
     botanical_name: x["BOTANICAL_"],
     dbh_trunk: x["DBH_TRUNK"],
     address: x["ADDRESS"],
     name: x["NAME"],
+    geometry_type: x["geometry_type"],
+    lat_coordinate: x["coordinates_lat"],
+    long_coordinate: x["coordinates_long"],
+    tree_posit: x["TREE_POSIT"],
     type: type,
     location: location,
   })
