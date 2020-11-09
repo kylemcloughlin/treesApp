@@ -8,7 +8,7 @@
       <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
       <div class="btn-helper" />
     </div>
-    <div class="output-holder">
+    <div class="output-holder" v-show='formShow === false'>
     <Map v-bind:markerTrees="this.searchedTrees" />
       <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees"/>
     </div>
