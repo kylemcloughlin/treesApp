@@ -1,11 +1,17 @@
 <template>
   <div id="app">
     <Header msg="trees App" />
-    <Species msg v-on:setSearch="setSearch" />
-    <Location msg v-on:setSearch="setSearch" />
-    <Diameter msg v-on:setSearch="setSearch" />
-    <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
-    <Map v-bind:markerTrees="this.searchedTrees"/>
+    <div class="form-holder" v-show="formShow">
+      <Species v-bind:msg="this.msg" v-on:setSearch="setSearch" />
+      <Location v-bind:msg="this.msg" v-on:setSearch="setSearch" />
+      <Diameter v-bind:msg="this.msg" v-on:setSearch="setSearch" />
+      <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
+      <div class="btn-helper" />
+    </div>
+    <div class="output-holder">
+    <Map v-bind:markerTrees="this.searchedTrees" />
+      <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees"/>
+    </div>
   </div>
 </template>
 
@@ -15,9 +21,8 @@ import Location from "./components/location";
 import Diameter from "./components/diameter";
 import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
-import Map from './components/map';
-
-
+import Map from "./components/map";
+import InfoPanel from "./components/infoPanel";
 
 export default {
   name: "App",
@@ -27,54 +32,100 @@ export default {
     Diameter,
     SearchBar,
     Species,
-    Map
+    Map,
+    InfoPanel
   },
   methods: {
     setSearch(x) {
       console.log("set search", x);
-      if (x === 'types') {
-          console.log('species/types', x)
-          return this.baseSearch = x; 
+      if (x === "types") {
+        console.log("species/types", x);
+        this.baseSearch = x;
+        this.msg = x;
+      } else if (x === "locations") {
+        console.log("local", x);
 
-      } else if(  x === 'locations') {
-          console.log('local', x)
-
-          return this.baseSearch = x; 
-
+        this.baseSearch = x;
+        this.msg = x;
       } else {
-          console.log('kick a doo')
+        console.log("kick a doo");
 
-        return this.baseSearch = x; 
-
+        this.baseSearch = x;
+        this.msg = x;
       }
     },
     setTrees(x) {
-      console.log('hit app')
-     return this.searchedTrees = x;
-    }
+      console.log("hit app");
+      this.searchedTrees = x
+      return(this.formShow = false);
 
+    }
   },
   created() {
-  
-
+    console.log("app", this.msg);
   },
   data() {
     return {
       baseTrees: [],
       baseSearch: "types",
-      searchedTrees: []
+      searchedTrees: [],
+      msg: "types",
+      formShow: true
     };
   }
 };
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  padding: 0;
+}
+.form-holder {
+  width: 100%;
+  position: relative;
+  top: 3em;
+  display: flex;
+  margin: auto;
+  width: 50%;
+  height: 7em;
+
+  border: 1.5px solid grey;
+  border-top: 3px solid green;
+  padding-bottom: 10px;
+}
+.btn {
+  border-radius: 0em;
+  border: 1.5px solid grey;
+  /* border-bottom: none; */
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.btn-helper {
+  border-top: 1.5px solid grey;
+  width: 100%;
+  height: 0px;
+  position: relative;
+  top: 1.24em;
+  left: -1px;
+}
+.output-holder {
+    width: 100%;
+  position: relative;
+  top: 3em;
+  display: flex;
+  margin: auto;
+
 }
 </style>

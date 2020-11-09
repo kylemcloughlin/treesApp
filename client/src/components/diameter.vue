@@ -1,7 +1,7 @@
 <template>
 <div>
   <form>
-     <input type="submit" value="Diameter" class='btn' v-on:click.stop="click"/>
+     <input type="submit" value="Diameter" class='btn' v-on:click.stop="click" v-bind:id="[msg === 'diameters' ? this.activeId : '']"/>
   </form>
 </div>
 </template>
@@ -13,6 +13,12 @@ export default {
   props: {
     msg: String
   }, 
+    data() {
+    return ({
+      activeId: 'active-id'
+
+    })
+  },
   methods: {
     click(e) {
      e.preventDefault();
@@ -20,10 +26,19 @@ export default {
    this.$emit('setSearch', 'diameters');
 
  }
-}
+},
+ watch:{
+            msg(){
+              
+
+            }
+  },
 
 }
 </script>
 <style scoped>
-
+#active-id {
+  border-bottom: none; 
+  /* background-color: black; */
+}
 </style>

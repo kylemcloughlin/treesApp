@@ -1,8 +1,7 @@
 <template>
-  <div
-    v-if="this.makeMarkers === true "
-  >
-    <h1>maps</h1>
+  <div class='map-div'
+    v-show="this.makeMarkers === true " >
+
     <GmapMap
       :center="{lat:43, lng:-79}"
       :zoom="7"
@@ -16,7 +15,7 @@
       v-bind:position="{lat:tree.long_coordinate, lng:tree.lat_coordinate}"
         :clickable="true" 
          :icon="{ url: require('../assets/treeMarker.png')}" />
-        :draggable="true" />
+        
     </GmapMap>
   </div>
 </template>
@@ -62,4 +61,12 @@ export default {
 };
 </script>
 <style>
+.map-div {
+  width: 100%;
+  width: 53%;
+  margin: 1em;
+  border: 1.5px solid grey;
+  border-top: green 3px solid;
+}
+
 </style>

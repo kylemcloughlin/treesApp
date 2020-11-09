@@ -1,7 +1,7 @@
 <template>
    <div>
   <form>
-    <input type="submit" value="Location" class='btn' v-on:click.stop="click"/>
+    <input type="submit" value="Location" class='btn' v-on:click.stop="click" v-bind:id="[msg === 'locations' ? this.activeId : '']"/>
   </form>
 </div>
 </template>
@@ -13,6 +13,17 @@ export default {
   props: {
     msg: String
   }, 
+  watch: {
+    msg() {
+      console.log("lolongg", this.msg);
+    }
+  },
+    data() {
+    return ({
+      activeId: 'active-id'
+
+    })
+  },
   methods: {
     click(e) {
      e.preventDefault();
@@ -25,5 +36,8 @@ export default {
 }
 </script>
 <style scoped>
-
+#active-id {
+  border-bottom: none;
+ 
+}
 </style>
