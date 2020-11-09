@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header msg="trees App" />
+    <Header msg="trees App" v-on:backBtn="backBtn" v-bind:show="this.back"/>
     <div class="form-holder" v-show="formShow">
       <Species v-bind:msg="this.msg" v-on:setSearch="setSearch" />
       <Location v-bind:msg="this.msg" v-on:setSearch="setSearch" />
@@ -37,32 +37,41 @@ export default {
   },
   methods: {
     setSearch(x) {
-      console.log("set search", x);
+      
       if (x === "types") {
-        console.log("species/types", x);
+      
         this.baseSearch = x;
         this.msg = x;
       } else if (x === "locations") {
-        console.log("local", x);
+      
 
         this.baseSearch = x;
         this.msg = x;
       } else {
-        console.log("kick a doo");
+      
 
         this.baseSearch = x;
         this.msg = x;
       }
     },
     setTrees(x) {
-      console.log("hit app");
+     
       this.searchedTrees = x
       return(this.formShow = false);
 
+    },
+    backBtn(x) {
+      console.log("HELLLLL@@@@@@@@@@@@@@@@@@@@@@@@@@@L0", x);
+      if (x === false) {
+        console.log("")
+      } else {
+        return(this.formShow = x);
+
+      }
     }
   },
   created() {
-    console.log("app", this.msg);
+   
   },
   data() {
     return {
@@ -70,7 +79,8 @@ export default {
       baseSearch: "types",
       searchedTrees: [],
       msg: "types",
-      formShow: true
+      formShow: true,
+      back: false
     };
   }
 };
