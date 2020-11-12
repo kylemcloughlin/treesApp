@@ -12,6 +12,7 @@ export default {
    name: "Location",
   props: {
     msg: String
+    
   }, 
   watch: {
     msg() {

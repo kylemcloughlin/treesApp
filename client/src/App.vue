@@ -10,7 +10,7 @@
     </div>
     <div class="output-holder" v-show='formShow === false'>
     <Map v-bind:markerTrees="this.searchedTrees" />
-      <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees"/>
+      <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
     </div>
   </div>
 </template>

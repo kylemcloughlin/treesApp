@@ -12,7 +12,7 @@
         v-for="(tree, index) in this.markerTrees"
         v-bind:index="index"
         v-bind:key="tree.id"
-      v-bind:position="{lat:tree.long_coordinate, lng:tree.lat_coordinate}"
+      v-bind:position="{lat:tree.long, lng:tree.lat}"
         :clickable="true" 
          :icon="{ url: require('../assets/treeMarker.png')}" />
         
@@ -34,24 +34,7 @@ export default {
     markerTrees() {
       console.log("POPOP", this.markerTrees);
       this.makeMarkers = true
-      for (let tree of this.markerTrees) {
-        console.log(tree.address)
-        console.log(tree.name)
-        // console.log("???????", tree.long_coordinate)
-        //  console.log("???????", tree.lat_coordinate)
-        // let x = this.markerTrees[tree].long_coordinate
-//         console.log( typeof this.markerTrees[tree].lat_coordinate)
-//         console.log(this.markerTrees[tree].lat_coordinate)
-// console.log()
-//         console.log( typeof this.markerTrees[tree].long_coordinate)
-//         console.log( this.markerTrees[tree].long_coordinate)
-
-
-        // console.log(x.isInteger())
-
-
-
-      }
+    
       console.table(this.markerTrees);
     }
   },
