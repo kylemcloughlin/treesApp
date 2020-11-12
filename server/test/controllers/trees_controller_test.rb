@@ -12,7 +12,7 @@ class TreesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tree" do
     assert_difference('Tree.count') do
-      post trees_url, params: { tree: { address: @tree.address, botanical_name: @tree.botanical_name, common_name: @tree.common_name, dbh_trunk: @tree.dbh_trunk, diameter_id: @tree.diameter_id, geometry_type: @tree.geometry_type, lat_coordinate: @tree.lat_coordinate, location_id: @tree.location_id, long_coordinate: @tree.long_coordinate, name: @tree.name, tree_posit: @tree.tree_posit, type_id: @tree.type_id } }, as: :json
+      post trees_url, params: { tree: { address: @tree.address, botanical_name: @tree.botanical_name, common_name: @tree.common_name, dbh_trunk: @tree.dbh_trunk, diameter_id: @tree.diameter_id, geometery: @tree.geometery, location_id: @tree.location_id, name: @tree.name, tree_posit: @tree.tree_posit, type_id: @tree.type_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class TreesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tree" do
-    patch tree_url(@tree), params: { tree: { address: @tree.address, botanical_name: @tree.botanical_name, common_name: @tree.common_name, dbh_trunk: @tree.dbh_trunk, diameter_id: @tree.diameter_id, geometry_type: @tree.geometry_type, lat_coordinate: @tree.lat_coordinate, location_id: @tree.location_id, long_coordinate: @tree.long_coordinate, name: @tree.name, tree_posit: @tree.tree_posit, type_id: @tree.type_id } }, as: :json
+    patch tree_url(@tree), params: { tree: { address: @tree.address, botanical_name: @tree.botanical_name, common_name: @tree.common_name, dbh_trunk: @tree.dbh_trunk, diameter_id: @tree.diameter_id, geometery: @tree.geometery, location_id: @tree.location_id, name: @tree.name, tree_posit: @tree.tree_posit, type_id: @tree.type_id } }, as: :json
     assert_response 200
   end
 

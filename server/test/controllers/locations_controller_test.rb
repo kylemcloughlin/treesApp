@@ -12,7 +12,7 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create location" do
     assert_difference('Location.count') do
-      post locations_url, params: { location: { address: @location.address, geo_id: @location.geo_id, geometry_type: @location.geometry_type, lat_coordinate: @location.lat_coordinate, long_coordinate: @location.long_coordinate, name: @location.name, struct_id: @location.struct_id, tree_posit: @location.tree_posit, x: @location.x, y: @location.y } }, as: :json
+      post locations_url, params: { location: { address: @location.address, geo_id: @location.geo_id, name: @location.name, struct_id: @location.struct_id, x: @location.x, y: @location.y } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class LocationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update location" do
-    patch location_url(@location), params: { location: { address: @location.address, geo_id: @location.geo_id, geometry_type: @location.geometry_type, lat_coordinate: @location.lat_coordinate, long_coordinate: @location.long_coordinate, name: @location.name, struct_id: @location.struct_id, tree_posit: @location.tree_posit, x: @location.x, y: @location.y } }, as: :json
+    patch location_url(@location), params: { location: { address: @location.address, geo_id: @location.geo_id, name: @location.name, struct_id: @location.struct_id, x: @location.x, y: @location.y } }, as: :json
     assert_response 200
   end
 

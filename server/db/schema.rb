@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_191434) do
+ActiveRecord::Schema.define(version: 2020_11_11_171609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "diameters", force: :cascade do |t|
     t.integer "dbh_trunk"
@@ -32,19 +33,34 @@ ActiveRecord::Schema.define(version: 2020_11_08_191434) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "raw_trees", force: :cascade do |t|
+    t.integer "GEO_ID"
+    t.float "X"
+    t.float "Y"
+    t.integer "STRUCTID"
+    t.integer "ADDRESS"
+    t.string "name"
+    t.integer "DBH_TRUNK"
+    t.integer "TREE_POSIT"
+    t.string "COMMON_NAM"
+    t.string "BOTANICAL_"
+    t.point "geometry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "trees", force: :cascade do |t|
     t.string "common_name"
     t.string "botanical_name"
     t.integer "dbh_trunk"
-    t.string "geometry_type"
-    t.float "lat_coordinate"
-    t.float "long_coordinate"
-    t.integer "tree_posit"
     t.integer "address"
     t.string "name"
+    t.integer "tree_posit"
+    t.float "lat"
+    t.float "long"
     t.bigint "type_id", null: false
-    t.bigint "location_id", null: false
     t.bigint "diameter_id", null: false
+    t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["diameter_id"], name: "index_trees_on_diameter_id"

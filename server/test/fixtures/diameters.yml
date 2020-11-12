@@ -2,8 +2,6 @@
 
 one:
   dbh_trunk: 1
-  trees: one
 
 two:
   dbh_trunk: 1
-  trees: two

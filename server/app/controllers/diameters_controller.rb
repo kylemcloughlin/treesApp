@@ -46,6 +46,6 @@ class DiametersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def diameter_params
-      params.require(:diameter).permit(:dbh_trunk, :trees_id)
+      params.require(:diameter).permit(:dbh_trunk)
     end
 end

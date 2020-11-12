@@ -46,6 +46,6 @@ class TreesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tree_params
-      params.require(:tree).permit(:common_name, :botanical_name, :dbh_trunk, :geometry_type, :lat_coordinate, :long_coordinate, :tree_posit, :address, :name, :type_id, :location_id, :diameter_id)
+      params.require(:tree).permit(:common_name, :botanical_name, :dbh_trunk, :address, :name, :tree_posit, :geometery, :type_id, :diameter_id, :location_id)
     end
 end

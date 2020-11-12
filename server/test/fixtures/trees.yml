@@ -4,26 +4,22 @@ one:
   common_name: MyString
   botanical_name: MyString
   dbh_trunk: 1
-  geometry_type: MyString
-  lat_coordinate: 1.5
-  long_coordinate: 1.5
-  tree_posit: 1
   address: 1
   name: MyString
+  tree_posit: 1
+  geometery: 
   type: one
-  location: one
   diameter: one
+  location: one
 
 two:
   common_name: MyString
   botanical_name: MyString
   dbh_trunk: 1
-  geometry_type: MyString
-  lat_coordinate: 1.5
-  long_coordinate: 1.5
-  tree_posit: 1
   address: 1
   name: MyString
+  tree_posit: 1
+  geometery: 
   type: two
-  location: two
   diameter: two
+  location: two

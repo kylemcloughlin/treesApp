@@ -3,8 +3,6 @@ class TypesController < ApplicationController
 
   # GET /types
   def index
-  
-  puts "$$$$$$$$$$"
     @types = Type.all
 
     render json: @types
@@ -12,8 +10,6 @@ class TypesController < ApplicationController
 
   # GET /types/1
   def show
-    # set_type
-    puts @type.trees
     render json: @type.trees
   end
 
@@ -43,15 +39,13 @@ class TypesController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_type
+      @type = Type.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_type
-    puts "HHHH@@@@@"
-    @type = Type.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def type_params
-    params.require(:type).permit(:common_name, :botanical_name)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def type_params
+      params.require(:type).permit(:common_name, :botanical_name)
+    end
 end

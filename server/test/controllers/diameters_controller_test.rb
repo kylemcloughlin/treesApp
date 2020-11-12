@@ -12,7 +12,7 @@ class DiametersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create diameter" do
     assert_difference('Diameter.count') do
-      post diameters_url, params: { diameter: { dbh_trunk: @diameter.dbh_trunk, trees_id: @diameter.trees_id } }, as: :json
+      post diameters_url, params: { diameter: { dbh_trunk: @diameter.dbh_trunk } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class DiametersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update diameter" do
-    patch diameter_url(@diameter), params: { diameter: { dbh_trunk: @diameter.dbh_trunk, trees_id: @diameter.trees_id } }, as: :json
+    patch diameter_url(@diameter), params: { diameter: { dbh_trunk: @diameter.dbh_trunk } }, as: :json
     assert_response 200
   end
 
