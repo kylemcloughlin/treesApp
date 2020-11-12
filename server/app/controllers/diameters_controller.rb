@@ -10,7 +10,7 @@ class DiametersController < ApplicationController
 
   # GET /diameters/1
   def show
-    render json: @diameter.trees
+    render json: @diameter
   end
 
   # POST /diameters

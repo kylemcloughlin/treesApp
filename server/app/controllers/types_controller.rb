@@ -3,7 +3,7 @@ class TypesController < ApplicationController
 
   # GET /types
   def index
-    @types = Type.all
+    @types = Type.all.order(:common_name)
 
     render json: @types
   end

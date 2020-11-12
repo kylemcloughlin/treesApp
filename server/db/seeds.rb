@@ -5,7 +5,7 @@
 require "rgeo"
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Dir.glob("#{Rails.root}/db/seeds/*.rb").each { |f| require f }
+Dir.glob("#{Rails.root}/db/seeds/*.rb").each { |f| require f }
 
 
 puts "begining to extract and seed data base........."
@@ -22,7 +22,7 @@ raw.each do |x|
   
 
     diameter = Diameter.find_or_create_by({
-      dbh_trunk: x["bdh_trunk"],
+      dbh_trunk: x["dbh_trunk"],
     })
     type = Type.find_or_create_by({
       common_name: x["common_nam"],

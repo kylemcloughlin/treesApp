@@ -60,7 +60,7 @@ export default {
         .get(`/${this.search}`)
 
         .then(response => (this.trees = response.data))
-        .then(() => console.log(this.trees))
+        .then(() => console.log(this.trees[0]))
         .catch(err => console.log(":(", err));
 
       console.log(this.baseTrees);

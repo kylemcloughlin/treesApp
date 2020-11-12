@@ -1,3 +1,3 @@
 class Diameter < ApplicationRecord
-has_many :trees
+  has_many :trees
 end

@@ -3,7 +3,7 @@ class TreesController < ApplicationController
 
   # GET /trees
   def index
-    @trees = Tree.all
+    @trees = Tree.all.order('common_name')
 
     render json: @trees
   end
@@ -46,6 +46,6 @@ class TreesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tree_params
-      params.require(:tree).permit(:common_name, :botanical_name, :dbh_trunk, :address, :name, :tree_posit, :geometery, :type_id, :diameter_id, :location_id)
+      params.require(:tree).permit(:common_name, :botanical_name, :dbh_trunk, :address, :name, :tree_posit, :lat, :long, :type_id, :diameter_id, :location_id)
     end
 end

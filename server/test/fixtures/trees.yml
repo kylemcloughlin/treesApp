@@ -7,7 +7,8 @@ one:
   address: 1
   name: MyString
   tree_posit: 1
-  geometery: 
+  lat: 1.5
+  long: 1.5
   type: one
   diameter: one
   location: one
@@ -19,7 +20,8 @@ two:
   address: 1
   name: MyString
   tree_posit: 1
-  geometery: 
+  lat: 1.5
+  long: 1.5
   type: two
   diameter: two
   location: two
