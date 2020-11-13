@@ -23,7 +23,8 @@
 export default {
   name: "map",
   props: {
-    markerTrees: Array
+    markerTrees: Array,
+    searched: String
   },
   data() {
     return{
@@ -32,7 +33,10 @@ export default {
   },
   watch: {
     markerTrees() {
-      console.log("POPOP", this.markerTrees);
+      if(this.searched === 'diameters') {
+
+        console.log("POPOP", this.markerTrees.value);
+      }
       this.makeMarkers = true
     
       console.table(this.markerTrees);

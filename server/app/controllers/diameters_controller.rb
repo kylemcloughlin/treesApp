@@ -10,7 +10,8 @@ class DiametersController < ApplicationController
 
   # GET /diameters/1
   def show
-    render json: @diameter
+   puts 'hit?'
+    render json: @diameter.trees
   end
 
   # POST /diameters
@@ -41,7 +42,9 @@ class DiametersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_diameter
-      @diameter = Diameter.find(params[:id])
+   puts "hit?"      
+  #  byebug
+      @diameter = Diameter.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,6 +1,6 @@
 <template>
-  <div class='tree-div'>
-    <h3 class='tree-h3'>{{tree.common_name}} </h3>
+  <div class='tree-div' v-bind:class="[(tree.first === true) ? 'top' : '']" >
+    <h3 class='tree-h3'>{{tree.common_name}} {{tree.id}}</h3>
     <h3 class='tree-h3'> <i>{{tree.botanical_name}}</i></h3>
   <span class='tree-span'>{{tree.address}} {{tree.name}}</span>
   <br/>
@@ -38,5 +38,8 @@ margin-left: 3em;
 position: relative;
 right: 31%;
 
+ }
+ .top{
+   margin-top: 8em; 
  }
 </style>

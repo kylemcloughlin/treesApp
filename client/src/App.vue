@@ -9,7 +9,7 @@
       <div class="btn-helper" />
     </div>
     <div class="output-holder" v-show='formShow === false'>
-    <Map v-bind:markerTrees="this.searchedTrees" />
+    <!-- <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/> -->
       <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
     </div>
   </div>
@@ -21,7 +21,7 @@ import Location from "./components/location";
 import Diameter from "./components/diameter";
 import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
-import Map from "./components/map";
+// import Map from "./components/map";
 import InfoPanel from "./components/infoPanel";
 
 export default {
@@ -32,7 +32,7 @@ export default {
     Diameter,
     SearchBar,
     Species,
-    Map,
+    // Map,
     InfoPanel
   },
   methods: {

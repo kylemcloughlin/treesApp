@@ -5,6 +5,9 @@ import {securedAxiosInstance, plainAxiosInstance } from './assets/backend/axios'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import {KEY} from '.././fakeENV.js'
 
+
+
+
 Vue.config.productionTip = false;
 Vue.use(VueAxios, {
   secured: securedAxiosInstance,

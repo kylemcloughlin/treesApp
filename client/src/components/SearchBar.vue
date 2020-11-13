@@ -4,19 +4,19 @@
     <form @submit="searchTree">
       <select v-if="this.search ===  'types'" v-model="output">
         <option
-          v-bind:key="tree.x"
+          v-bind:key="tree.id"
           v-for="tree in trees"
           v-bind:value="tree.id"
         >{{tree.common_name}} {{tree.botanical_name}}</option>
       </select>
       <select v-else-if="this.search === 'locations' " v-model="output">
-        <option v-bind:key="tree.y" 
+        <option v-bind:key="tree.id" 
         v-for="tree in trees"
        v-bind:value="tree.id"
         >{{tree.address}} {{tree.name}}</option>
       </select>
       <select v-else name="tree-selector" v-model="output">
-        <option v-bind:key="tree.geo_id" v-for="tree in trees">{{tree.dbh_trunk}}</option>
+        <option v-bind:key="tree.id" v-for="tree in trees">{{tree.dbh_trunk}}</option>
       </select>
       <!-- <input type="text" :placeholder="this.search" /> -->
       <input type="submit" value="submit" class="btn" @submit.prevent="searchTree" />
@@ -49,6 +49,7 @@ export default {
     
   
       // this.$emit('update:myProp',response.data)
+      console.log(`searching..... /${this.search}/${this.output}`)
       this.$http.plain
         .get(`/${this.search}/${this.output}`)
         .then(response => this.$emit('setTrees' ,response.data))
@@ -60,10 +61,10 @@ export default {
         .get(`/${this.search}`)
 
         .then(response => (this.trees = response.data))
-        .then(() => console.log(this.trees[0]))
+        // .then(() => )
         .catch(err => console.log(":(", err));
 
-      console.log(this.baseTrees);
+      // console.log(this.baseTrees);
     }
   },
 
