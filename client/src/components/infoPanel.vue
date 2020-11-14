@@ -1,7 +1,9 @@
 <template>
   <div class='info-panel-div' ref='infoPanel'>
  <div class='title-holder'> 
-  <h1>{{this.searched}} {{this.outputTrees[0].common_name}} Results: {{this.outputTrees.length}} Trees Found</h1>
+  <h1 v-if="this.searched === 'diameters'"> Diameter's of {{this.outputTrees[0].dbh_trunk}} inches</h1>
+  <h1 v-else>{{this.searched}} {{this.outputTrees[0].common_name}}</h1>
+    <h2> Results: {{this.outputTrees.length}} Trees Found </h2>
  </div>
  <div>
   <Tree v-for="(tree, index) in this.divTrees"
@@ -44,6 +46,7 @@ export default {
     console.log('in the if ,', this.divTrees)
     } else {
       console.log('hit false')
+    console.log(this.outputTrees[0])
      for (let x in this.outputTrees) {
         if(this.divTrees.length ===  25) {
           break

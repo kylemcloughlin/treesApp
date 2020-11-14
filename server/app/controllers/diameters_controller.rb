@@ -5,12 +5,12 @@ class DiametersController < ApplicationController
   def index
     @diameters = Diameter.all
 
-    render json: @diameters
+    render json: @diameters.order(:dbh_trunk)
   end
 
   # GET /diameters/1
   def show
-   puts 'hit?'
+   puts 'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH%%%%%%%%%%%%%%%%%%%%%%%%%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     render json: @diameter.trees
   end
 
