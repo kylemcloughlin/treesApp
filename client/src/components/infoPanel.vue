@@ -2,6 +2,7 @@
   <div class='info-panel-div' ref='infoPanel'>
  <div class='title-holder'> 
   <h1 v-if="this.searched === 'diameters'"> Diameter's of {{this.outputTrees[0].dbh_trunk}} inches</h1>
+  <h1 v-else-if="this.searched === 'locations'">{{this.outputTrees[0].address}} {{this.outputTrees[0].name}}</h1>
   <h1 v-else>{{this.searched}} {{this.outputTrees[0].common_name}}</h1>
     <h2> Results: {{this.outputTrees.length}} Trees Found </h2>
  </div>

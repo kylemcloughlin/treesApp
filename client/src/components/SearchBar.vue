@@ -9,12 +9,28 @@
           v-bind:value="tree.id"
         >{{tree.common_name}} {{tree.botanical_name}}</option>
       </select>
-      <select v-else-if="this.search === 'locations' " v-model="output">
+     <div v-else-if="this.search === 'locations' ">
+    
+    
+      <input  v-show="selected === false" type='text' placeholder=" Search location here..." v-model="output" @keyup="autocomplete"/> 
+      <div v-if="this.output.length > 0" v-show="selected === false"> 
+      <div v-for="tree in suggestions"
+       v-bind:key="tree.id"
+       v-bind:value="tree.id"
+       @click="help(tree)"
+      > <h2>{{tree.address}} {{tree.name}}</h2>  
+      </div>
+      </div>
+      <div v-if="selected === true">{{location.address}} {{location.name}}</div> 
+      <!-- <div v-else/> -->
+      <!-- <select v-model="output">
         <option v-bind:key="tree.id" 
         v-for="tree in trees"
        v-bind:value="tree.id"
         >{{tree.address}} {{tree.name}}</option>
-      </select>
+      </select> -->
+     </div>
+     
      <div v-else>
         <h1>{{this.trees[this.numOutput].dbh_trunk}} inches </h1>
      <button  v-show="this.numOutput < 124" v-on:click.prevent='plus'>+</button> 
@@ -47,7 +63,10 @@ export default {
       trees: [],
       dataSelect: "Location",
       output: "",
-      numOutput: 3
+      numOutput: 3,
+      suggestions: [],
+      selected: false,
+      location: {}
     };
   },
   props: {
@@ -85,11 +104,29 @@ export default {
      
 
     },
-        minus() {
+     minus() {
    
       this.numOutput = this.numOutput - 1;
     
-    }
+    },
+  autocomplete() {
+    let list = this.trees
+    let location = this.output
+      console.log(list[0].name)
+  this.suggestions  = list.filter(tree => {
+    return tree.name.startsWith(location.toUpperCase())
+  })
+  if (this.output.length === 0) {
+      this.suggestions = [];
+  }
+  },
+  help(value) {
+    console.log(`${value.address} ${value.name}`)
+    this.location = value;
+    this.selected = true;
+    this.output = value.id
+  }
+
   },
 
  watch:{
