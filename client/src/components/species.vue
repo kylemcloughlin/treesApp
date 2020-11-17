@@ -23,18 +23,18 @@ export default {
   methods: {
     click(e) {
      e.preventDefault();
-     console.log("!!")
+     
    this.$emit('setSearch', 'types');
 
  },
 },
    watch: {
      msg() {
-       console.log('', this.msg)
+       
      }
    },
 created() {
-  console.log("yoyoyo upupupup", this.msg);
+  
 }
 
 }

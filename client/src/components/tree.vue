@@ -1,10 +1,10 @@
 <template>
   <div class='tree-div' v-bind:class="[(tree.first === true) ? 'top' : '']" >
-    <h3 class='tree-h3'>{{tree.common_name}} {{tree.id}}</h3>
-    <h3 class='tree-h3'> <i>{{tree.botanical_name}}</i></h3>
-  <span class='tree-span'>{{tree.address}} {{tree.name}}</span>
-  <br/>
+    <h3 class='tree-h3'>{{tree.common_name}}</h3>
+    <h4 class='tree-h4'> <i>{{tree.botanical_name}}</i></h4>
   <span class='tree-diam'> Diameter at Breast Height: {{tree.dbh_trunk}}</span>
+  <br/>
+  <span class='tree-span'>{{tree.address}} {{tree.name}}</span>
   </div>
 </template>
 <script>
@@ -16,30 +16,33 @@ props: {
 }
 </script>
 <style scoped>
+ /* @media only screen and (max-width: 414px) {} */
  .tree-div {
-  width: 100%;
-
+  width: 99%;
+  align-content: unset;
   border: 1.5px solid grey;
   border-top: green 3px solid
  }
  .tree-h3 {
-position: relative;
-right: 29%;
-margin-left: 2.3em;
+ position: relative;
+ padding-left: 1em;
  }
-
+ .tree-h4 {
+position: relative;
+ padding-left: 1em;
+ }
   .tree-span {
 position: relative;
-right: 37%;
-margin-left: 3em;
+ padding-left: 1em;
+
 
  }
    .tree-diam {
 position: relative;
-right: 31%;
+ padding-left: 1em;
 
  }
  .top{
-   margin-top: 8em; 
+   margin-top: 11.5em; 
  }
 </style>

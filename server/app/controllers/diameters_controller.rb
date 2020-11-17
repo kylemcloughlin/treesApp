@@ -5,12 +5,12 @@ class DiametersController < ApplicationController
   def index
     @diameters = Diameter.all
 
-    render json: @diameters.order(:dbh_trunk)
+    render json: @diameters
   end
 
   # GET /diameters/1
   def show
-   puts 'HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH%%%%%%%%%%%%%%%%%%%%%%%%%>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+  #  byebug
     render json: @diameter.trees
   end
 
@@ -44,7 +44,7 @@ class DiametersController < ApplicationController
     def set_diameter
    puts "hit?"      
   #  byebug
-      @diameter = Diameter.find_by(id: params[:id])
+      @diameter = Diameter.find_by(dbh_trunk: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

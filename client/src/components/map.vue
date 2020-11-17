@@ -3,8 +3,9 @@
     v-show="this.makeMarkers === true " >
 
     <GmapMap
+    
       :center="{lat:43, lng:-79}"
-      :zoom="7"
+      :zoom="10"
       style="width:640px; height:360px; margin: 32px auto"
     >
 
@@ -34,23 +35,24 @@ export default {
   watch: {
     markerTrees() {
       if(this.searched === 'diameters') {
-
-        console.log("POPOP", this.markerTrees.value);
+          console.log('')
+        
       }
       this.makeMarkers = true
     
-      console.table(this.markerTrees);
+      
     }
   },
   created() {
-    console.log("yoyoyoy", this.markerTrees);
+    
   }
 };
 </script>
 <style>
 .map-div {
-  width: 100%;
+  /* width: 100%; */
   width: 53%;
+height: 26em;
   margin: 1em;
   border: 1.5px solid grey;
   border-top: green 3px solid;

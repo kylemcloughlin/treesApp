@@ -16,7 +16,7 @@ export default {
   }, 
   watch: {
     msg() {
-      console.log("lolongg", this.msg);
+      
     }
   },
     data() {
@@ -28,7 +28,7 @@ export default {
   methods: {
     click(e) {
      e.preventDefault();
-     console.log("!!")
+    
    this.$emit('setSearch', 'locations');
 
  }

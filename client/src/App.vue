@@ -9,7 +9,7 @@
       <div class="btn-helper" />
     </div>
     <div class="output-holder" v-show='formShow === false'>
-    <!-- <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/> -->
+    <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
       <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
     </div>
   </div>
@@ -21,7 +21,7 @@ import Location from "./components/location";
 import Diameter from "./components/diameter";
 import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
-// import Map from "./components/map";
+import Map from "./components/map";
 import InfoPanel from "./components/infoPanel";
 
 export default {
@@ -32,7 +32,7 @@ export default {
     Diameter,
     SearchBar,
     Species,
-    // Map,
+    Map,
     InfoPanel
   },
   methods: {
@@ -57,14 +57,16 @@ export default {
     setTrees(x) {
      
       this.searchedTrees = x
+      this.back = true;
       return(this.formShow = false);
 
     },
     backBtn(x) {
-      console.log("HELLLLL@@@@@@@@@@@@@@@@@@@@@@@@@@@L0", x);
       if (x === false) {
-        console.log("")
+        console.log()
       } else {
+      this.back = false;
+      this.output = ""
         return(this.formShow = x);
 
       }
@@ -87,6 +89,22 @@ export default {
 </script>
 
 <style>
+
+/* @media only screen and (max-width: 376px) {
+
+.vue-map-container {
+    width: 334px;
+  /* width: 50% */
+/* }
+.form-holder {
+  width: 90% !important;
+ 
+
+}
+.type-select {
+  right: 4em !important;
+}
+} */ 
 body {
   margin: 0;
   padding: 0;
@@ -95,7 +113,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin: 0;
   padding: 0;
@@ -106,8 +124,8 @@ body {
   top: 3em;
   display: flex;
   margin: auto;
-  width: 50%;
-  height: 7em;
+  width: 65%;
+  height: 12em;
 
   border: 1.5px solid grey;
   border-top: 3px solid green;
@@ -117,6 +135,8 @@ body {
   border-radius: 0em;
   border: 1.5px solid grey;
   /* border-bottom: none; */
+  height: 3em;
+
 }
 .btn:focus {
   outline: none;
@@ -124,11 +144,11 @@ body {
 }
 .btn-helper {
   border-top: 1.5px solid grey;
-  width: 100%;
+  width: 47%;
   height: 0px;
-  position: relative;
-  top: 1.24em;
-  left: -1px;
+  position: absolute;
+  top: 2.45em;
+  left: 12.25em;
 }
 .output-holder {
     width: 100%;
@@ -137,5 +157,41 @@ body {
   display: flex;
   margin: auto;
 
+}
+@media only screen and (max-width: 1000px) {
+/* .img{
+  display: none;
+} */
+.output-holder{
+  display: flex;
+  flex-direction: column;
+}
+.map-div {
+  width: 93%;
+  overflow: hidden;
+}
+.vue-map-container {
+  width: 380px !important;
+}
+}
+@media only screen and (max-width: 414px) {
+
+
+.vue-map-container {
+    width: 334px;
+  /* width: 50% */
+}
+.form-holder {
+  width: 90% ;
+ 
+
+}
+.type-select {
+  top: 2em !important;
+  right: 1.5em !important;
+}
+/* #search-holder {
+
+} */
 }
 </style>
