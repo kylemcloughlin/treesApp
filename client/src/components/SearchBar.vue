@@ -19,16 +19,17 @@
             v-model="output"
             @keyup="autocomplete"
           />
-          <div v-if="this.output.length > 0" v-show="selected === false">
+          <!-- <div class='suggestion-container' v-if="this.output.length > 0" v-show="selected === false">
             <div
-              v-for="tree in suggestions"
+              v-for="tree in suggestions.slice(0,9)"
               v-bind:key="tree.id"
               v-bind:value="tree.id"
               @click="help(tree)"
+              class='suggestion-div'
             >
               <h2>{{tree.address}} {{tree.name}}</h2>
             </div>
-          </div>
+          </div> -->
           <div v-if="selected === true">
             <h3>{{location.address}} {{location.name}}</h3>
             <a @click="selected = false, output = ''">X</a>
@@ -43,9 +44,20 @@
         </div>
         <!-- <input type="range" v-else name="tree-selector"  min='0' max='125' v-model="numOutput"/> -->
         <!-- <h6>{{this.trees[this.numOutput].dbh_trunk}}</h6> -->
-      </div>
       <input type="submit" value="submit" id="submit" class="btn" @submit.prevent="searchTree" />
+      </div>
     </form>
+     <div class='suggestion-container' v-if="this.output.length > 0" v-show="selected === false">
+            <div
+              v-for="tree in suggestions.slice(0,9)"
+              v-bind:key="tree.id"
+              v-bind:value="tree.id"
+              @click="help(tree)"
+              class='suggestion-div'
+            >
+              <h2>{{tree.address}} {{tree.name}}</h2>
+            </div>
+          </div>
   </div>
 </template>
 
@@ -76,11 +88,15 @@ export default {
 
       let conditonialOutput =
         this.search === "diameters" ? this.numOutput : this.output;
+      if (conditonialOutput === "") {
+          alert("hit")
+      } else {
 
-      this.$http.plain
+        this.$http.plain
         .get(`/${this.search}/${conditonialOutput}`)
         .then(response => this.$emit("setTrees", response.data))
         .catch(err => console.log(":(", err));
+      }
     },
     getTrees() {
       this.$http.plain
@@ -138,6 +154,7 @@ export default {
   position: absolute;
   top: 3em;
   left: 2em;
+  /* overflow: hidden; */
   
 }
 .diameter-input {
@@ -160,19 +177,38 @@ position: absolute;
 .type-select {
   width: 96%;
   position: relative;
-  right: 2em;
+
 }
 #submit {
-    left: 6em;
+    right: 2em;
     position: relative;
-    top: 12em;
+    top: 8.4em;
     height: 2.3em;
     width: 6em;
     border-radius: .5em;
+    background-color: darkolivegreen;
 }
 .location-input {
 position: absolute;
 top: 2em;
 width: 84%;
+background: #222;
+border: 0;
+font-size: 25px;
+color: #fff;
+}
+.suggestion-div {
+  background: #222;
+  padding: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 15px;
+  color: #fff;
+  border-top: 1px solid #666;
+  cursor: pointer;
+  width: 
+}
+.suggestion-container {
+  margin-top: 5.05em;
 }
 </style>

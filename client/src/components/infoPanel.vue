@@ -150,6 +150,6 @@ export default {
 .info-panel-btn {
   padding: 0em;
   margin-top: 1em;
-  width: 28.5em;
+  width: 100%;
 }
 </style>

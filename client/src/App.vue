@@ -2,11 +2,12 @@
   <div id="app">
     <Header msg="trees App" v-on:backBtn="backBtn" v-bind:show="this.back"/>
     <div class="form-holder" v-show="formShow">
+  <div class='button-bar'>
       <Species v-bind:msg="this.msg" v-on:setSearch="setSearch" />
       <Location v-bind:msg="this.msg" v-on:setSearch="setSearch" />
       <Diameter v-bind:msg="this.msg" v-on:setSearch="setSearch" />
+  </div>
       <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
-      <div class="btn-helper" />
     </div>
     <div class="output-holder" v-show='formShow === false'>
     <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
@@ -126,21 +127,44 @@ body {
   margin: auto;
   width: 65%;
   height: 12em;
+  /* overflow-x: hidden; */
 
   border: 1.5px solid grey;
   border-top: 3px solid green;
   padding-bottom: 10px;
 }
+.button-bar {
+  width: 100%;
+  display: flex;
+height: 2.5em;
+background-color: #555;
+}
 .btn {
-  border-radius: 0em;
-  border: 1.5px solid grey;
-  /* border-bottom: none; */
+  /* background-color: #555; */
+  /* display: flex; */
+  /* background: #555; */
+  /* border-radius: 0em; */
+  border: none;
+  border-radius: 2em;
+  margin-left: 2em;
   height: 3em;
+  opacity: 0.6;
+  transition: 0.3s;
+  width: 100%
+  
 
 }
 .btn:focus {
   outline: none;
   box-shadow: none;
+  background-color: teal;
+  transition: 0.3s;
+
+   opacity: 1;
+}
+.btn:hover {
+  /* background-color: black; */
+  opacity: 1;
 }
 .btn-helper {
   border-top: 1.5px solid grey;
@@ -158,22 +182,51 @@ body {
   margin: auto;
 
 }
-@media only screen and (max-width: 1000px) {
-/* .img{
-  display: none;
-} */
+@media only screen and (max-width: 1024px) {
+.btn-helper {
+  width: 70%;
+}
 .output-holder{
   display: flex;
   flex-direction: column;
 }
+.type-select {
+  top: 3.2em !important;
+  /* left: 0.5em; */
+}
 .map-div {
   width: 93%;
   overflow: hidden;
+  height: 41em;
+}
+.info-panel-div {
+  height: 82em !important;
 }
 .vue-map-container {
-  width: 380px !important;
+  width: 880px !important;
+  height: 600px !important;
 }
+
+
 }
+
+@media only screen and (max-width: 768px) {
+ .btn-helper {
+    width: 61%;
+  }
+  .type-select {
+    /* left: 0em; */
+  top: 2em;
+  right: 1.5em;
+}
+
+  .vue-map-container {
+  width: 650px !important;
+}
+
+
+}
+
 @media only screen and (max-width: 414px) {
 
 
@@ -193,5 +246,15 @@ body {
 /* #search-holder {
 
 } */
+}
+@media only screen and (max-width: 375px) {
+  .btn-helper {
+    width: 42%;
+  }
+
+.vue-map-container {
+  width: 350px !important;
+}
+
 }
 </style>

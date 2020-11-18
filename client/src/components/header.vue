@@ -60,6 +60,8 @@ export default {
 .header h2 {
   position: absolute;
   top: 29px;
+  left: 1.7em;
+
 }
   .back-btn {
     position: relative;
@@ -70,7 +72,7 @@ export default {
   }
   .img {
     position: absolute;
-    right: 7.5em;
+    left: .3em;
     top: 3em;
     /* width: 3em; */
   }
