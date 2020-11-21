@@ -19,20 +19,10 @@
             v-model="output"
             @keyup="autocomplete"
           />
-          <!-- <div class='suggestion-container' v-if="this.output.length > 0" v-show="selected === false">
-            <div
-              v-for="tree in suggestions.slice(0,9)"
-              v-bind:key="tree.id"
-              v-bind:value="tree.id"
-              @click="help(tree)"
-              class='suggestion-div'
-            >
-              <h2>{{tree.address}} {{tree.name}}</h2>
-            </div>
-          </div> -->
-          <div v-if="selected === true">
+        
+          <div class='selected-location' v-if="selected === true">
+            <a class='x' @click="selected = false, output = ''">X</a>
             <h3>{{location.address}} {{location.name}}</h3>
-            <a @click="selected = false, output = ''">X</a>
           </div>
         </div>
 
@@ -133,6 +123,9 @@ export default {
   watch: {
     search() {
       this.getTrees();
+      if (this.search === "locations"){
+        this.output = "";
+      }
     }
   },
 
@@ -177,11 +170,12 @@ position: absolute;
 .type-select {
   width: 96%;
   position: relative;
+  top: 3.5em;
 
 }
 #submit {
-    right: 2em;
-    position: relative;
+    position: absolute;
+    right: 1em;
     top: 8.4em;
     height: 2.3em;
     width: 6em;
@@ -190,12 +184,30 @@ position: absolute;
 }
 .location-input {
 position: absolute;
-top: 2em;
+top: 1.5em;
 width: 84%;
+max-width: 19em;
 background: #222;
 border: 0;
 font-size: 25px;
 color: #fff;
+}
+.selected-location {
+  width: 80%;
+    max-width: 26em;
+    text-align: center;
+    margin: none;
+    background-color: #888;
+    position: absolute;
+    left: 4em;
+    top: 2em;
+    border-radius: 1em; 
+}
+
+.x {
+      float: right;
+    margin-right: 0.5em;
+    margin-top: 0.25em;
 }
 .suggestion-div {
   background: #222;
@@ -206,9 +218,20 @@ color: #fff;
   color: #fff;
   border-top: 1px solid #666;
   cursor: pointer;
-  width: 
+  opacity: .75;
+  transition: .25s;
+  /* width:  */
+  /* width: 84%; */
+}
+.suggestion-div:hover {
+  opacity: 1;
 }
 .suggestion-container {
-  margin-top: 5.05em;
+      position: absolute;
+      left: 2em;
+      top: 8em;
+      width: 80%;
+      max-width: 29.99em;
 }
+
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div>
   <form>
-     <input type="submit" value="Species" class='btn' v-on:click.stop="click" v-bind:id="[msg === 'types' ? this.activeId : '']"/>
+     <input v-bind:class="this.msg === 'types' ? 'selected' : '' " type="submit" value="Species" class='btn' v-on:click.stop="click" v-bind:id="[msg === 'types' ? this.activeId : '']"/>
   </form>
 </div>
 </template>
@@ -40,6 +40,10 @@ created() {
 }
 </script>
 <style scoped>
+.selected {
+  transition: .25s;
+  background-color: teal;
+}
 #active-id {
   border-bottom: none;
  

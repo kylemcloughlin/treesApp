@@ -43,6 +43,7 @@ export default {
       
         this.baseSearch = x;
         this.msg = x;
+        console.log(this.msg)
       } else if (x === "locations") {
       
 
@@ -67,6 +68,8 @@ export default {
         console.log()
       } else {
       this.back = false;
+      
+
       this.output = ""
         return(this.formShow = x);
 
@@ -91,21 +94,6 @@ export default {
 
 <style>
 
-/* @media only screen and (max-width: 376px) {
-
-.vue-map-container {
-    width: 334px;
-  /* width: 50% */
-/* }
-.form-holder {
-  width: 90% !important;
- 
-
-}
-.type-select {
-  right: 4em !important;
-}
-} */ 
 body {
   margin: 0;
   padding: 0;
@@ -114,13 +102,14 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
+
   color: #2c3e50;
   margin: 0;
   padding: 0;
 }
 .form-holder {
   width: 100%;
+  max-width: 40em;
   position: relative;
   top: 3em;
   display: flex;

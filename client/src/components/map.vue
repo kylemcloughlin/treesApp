@@ -4,8 +4,8 @@
 
     <GmapMap
     
-      :center="{lat:43, lng:-79}"
-      :zoom="10"
+      :center="{lat:43.6832, lng:-79.3832}"
+      :zoom="12"
       style="width:640px; height:360px; margin: 32px auto"
     >
 

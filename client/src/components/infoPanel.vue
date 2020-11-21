@@ -7,7 +7,7 @@
       <h1
         v-else-if="this.searched === 'locations'"
       >{{this.outputTrees[0].address}} {{this.outputTrees[0].name}}</h1>
-      <h1 v-else>Spieces: {{this.outputTrees[0].common_name}}</h1>
+      <h1 class='info-title' v-else>Spieces: {{this.outputTrees[0].common_name}}</h1>
       <h2>Results: {{this.outputTrees.length}} Trees Found</h2>
     
     </div>
@@ -28,13 +28,7 @@
         v-on:click.stop="infoPanelClick"
      />
     
-      <!-- <div  v-if="this.clicked === true">
-  <Tree v-for="(tree, index) in this.divTrees"
-        v-bind:index="index"
-        v-bind:key="tree.id"
-        v-bind:tree="tree"
-        v-bind:id="tree.id"/>
-      </div>-->
+
     </div>
   </div>
 </template>
@@ -125,11 +119,9 @@ export default {
 </script>
 <style scoped>
 .info-panel-div {
-  /* width: 100%; */
-    /* text-align: center; */
   overflow: scroll;
-  width: 93%;
-  /* position:fixed; */
+  width: 75%;
+  max-width: 40em;
   height: 34em;
   margin: 1em;
   border: 1.5px solid grey;
@@ -138,18 +130,25 @@ export default {
   /* margin-top: 8em; */
 }
 .title-holder {
-  width: 93%;
-  position: absolute;
+  width: 100%;
+  max-width: 40em;
+  position: relative;
   background-color: #999;
   z-index: 9999;
   height: 11.4em;
   max-height: 11.4em;
-    text-align: center;
+  text-align: center;
+  top: -1.5em
 
 }
 .info-panel-btn {
   padding: 0em;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   width: 100%;
+  position: relative;
+
+}
+.info-title {
+      padding-top: 1.5em;
 }
 </style>
