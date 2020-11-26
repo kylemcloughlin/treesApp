@@ -123,7 +123,7 @@ export default {
   width: 75%;
   max-width: 40em;
   height: 34em;
-  margin: 1em;
+  margin: auto;
   border: 1.5px solid grey;
   border-top: green 3px solid;
   z-index: 9999;

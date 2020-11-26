@@ -18,7 +18,7 @@ props: {
 <style scoped>
  /* @media only screen and (max-width: 414px) {} */
  .tree-div {
-  width: 99%;
+  /* width: 99%; */
   align-content: unset;
   border: 1.5px solid grey;
   border-top: green 3px solid

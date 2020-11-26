@@ -171,7 +171,7 @@ background-color: #555;
   margin: auto;
 
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1250px) {
 .btn-helper {
   width: 70%;
 }
@@ -189,7 +189,13 @@ background-color: #555;
   height: 41em;
 }
 .info-panel-div {
-  height: 82em !important;
+ max-height: 82em !important;
+  max-width: 70em !important;
+  width: 94% !important;
+}
+.title-holder {
+  width: 100% !important;
+  max-width: 70em !important;
 }
 .vue-map-container {
   width: 880px !important;
@@ -199,7 +205,30 @@ background-color: #555;
 
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 950px) {
+  .vue-map-container {
+  width: 780px !important;
+  /* height: 600px !important; */
+}
+}
+
+@media only screen and (max-width: 850px) {
+  .vue-map-container {
+  width: 680px !important;
+  /* height: 600px !important; */
+}
+}
+
+@media only screen and (max-width: 850px) {
+
+  .vue-map-container {
+  width: 680px !important;
+  /* height: 600px !important; */
+}
+}
+
+
+@media only screen and (max-width: 750px) {
  .btn-helper {
     width: 61%;
   }
@@ -210,24 +239,39 @@ background-color: #555;
 }
 
   .vue-map-container {
-  width: 650px !important;
+  width: 580px !important;
 }
 
 
 }
 
+@media only screen and (max-width: 650px) {
+    .vue-map-container {
+  width: 480px !important;
+}
+}
+
+@media only screen and (max-width: 550px) {
+  .btn {
+    margin-left: 1em !important;
+  }
+   .form-holder {
+  width: 80% !important;
+ 
+
+}
+    .vue-map-container {
+  width: 380px !important;
+}
+}
 @media only screen and (max-width: 414px) {
 
 
 .vue-map-container {
-    width: 334px;
+    width: 334px !important;
   /* width: 50% */
 }
-.form-holder {
-  width: 90% ;
- 
 
-}
 .type-select {
   top: 2em !important;
   right: 1.5em !important;

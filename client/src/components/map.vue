@@ -53,7 +53,7 @@ export default {
   /* width: 100%; */
   width: 53%;
 height: 26em;
-  margin: 1em;
+  margin: auto;
   border: 1.5px solid grey;
   border-top: green 3px solid;
 }
