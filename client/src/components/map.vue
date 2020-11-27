@@ -40,7 +40,8 @@ export default {
   name: "map",
   props: {
     markerTrees: Array,
-    searched: String
+    searched: String,
+    infoPanelTree: Object
   },
   data() {
     return{
@@ -56,9 +57,12 @@ export default {
           console.log('')
         
       }
-      this.makeMarkers = true
-    
-      
+
+      this.makeMarkers = true; 
+    },
+    infoPanelTree() {
+      this.openWindow(this.infoPanelTree);
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
   },
         methods: {

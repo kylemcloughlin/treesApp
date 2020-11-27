@@ -1,5 +1,5 @@
 <template>
-  <div class='tree-div' v-bind:class="[(tree.first === true) ? 'top' : '']" >
+  <div class='tree-div' v-bind:class="[(tree.first === true) ? 'top' : '']" v-on:click.stop="openInfoWindow(tree)">
     <h3 class='tree-h3'>{{tree.common_name}}</h3>
     <h4 class='tree-h4'> <i>{{tree.botanical_name}}</i></h4>
   <span class='tree-diam'> Diameter at Breast Height: {{tree.dbh_trunk}}</span>
@@ -12,6 +12,12 @@ export default {
   name: 'tree',
 props: {
   tree: Object
+},
+methods: {
+  openInfoWindow(tree){
+   return this.$emit('infoWindow', tree);
+  }
+
 }
 }
 </script>

@@ -18,6 +18,7 @@
         v-bind:key="tree.id"
         v-bind:tree="tree"
         v-bind:id="tree.id"
+        v-on:infoWindow="infoWindow"
       />
       <input
         v-if="this.outputTrees.length > 50"
@@ -69,6 +70,9 @@ export default {
     }
   },
   methods: {
+    infoWindow(tree) {
+      return this.$emit('panelClick', tree);
+    },
     infoPanelClick(e) {
       e.preventDefault();
       this.clicked = true;

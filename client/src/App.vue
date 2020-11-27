@@ -9,9 +9,9 @@
   </div>
       <SearchBar v-bind:search="this.baseSearch" msg="location" v-on:setTrees="setTrees" />
     </div>
-    <div class="output-holder" v-show='formShow === false'>
-    <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
-      <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees" v-bind:searched="this.baseSearch"/>
+      <div class="output-holder" v-show='formShow === false'>
+      <Map v-bind:markerTrees="this.searchedTrees" v-bind:searched="this.baseSearch" v-bind:infoPanelTree="this.InfoPanelTree"/>
+      <InfoPanel  v-if="formShow === false" v-bind:outputTrees="this.searchedTrees" v-bind:searched="this.baseSearch" v-on:panelClick="panelClick"/>
     </div>
   </div>
 </template>
@@ -37,6 +37,10 @@ export default {
     InfoPanel
   },
   methods: {
+    panelClick(tree) {
+      console.log(":D", tree.id)
+      this.InfoPanelTree = tree;
+    },
     setSearch(x) {
       
       if (x === "types") {
@@ -86,7 +90,8 @@ export default {
       searchedTrees: [],
       msg: "types",
       formShow: true,
-      back: false
+      back: false,
+      InfoPanelTree: {}
     };
   }
 };
