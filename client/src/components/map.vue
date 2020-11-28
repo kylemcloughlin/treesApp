@@ -83,8 +83,12 @@ export default {
   width: 53%;
 height: 26em;
   margin: auto;
-  border: 1.5px solid grey;
-  border-top: green 3px solid;
+  border: none;
+  border-top: #44cf6c 5px solid;
+  background-color: #b7b5b3;
+
+   border-top-right-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 
 </style>

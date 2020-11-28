@@ -4,8 +4,7 @@ import VueAxios from 'vue-axios'
 import {securedAxiosInstance, plainAxiosInstance } from './assets/backend/axios'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import {KEY} from '.././fakeENV.js'
-
-
+// import VueSlideUpDown from 'vue-slide-up-down';
 
 
 Vue.config.productionTip = false;
@@ -24,7 +23,7 @@ Vue.use(VueGoogleMaps, {
   //// If you want to set the version, you can do so:
   // v: '3.26',
 })
-
+// Vue.use(VueSlideUpDown);
 
 new Vue({
   render: h => h(App),

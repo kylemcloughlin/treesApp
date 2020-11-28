@@ -3,14 +3,22 @@
     <!-- <h2>{{msg}}</h2> -->
     <form @submit="searchTree">
       <div id="search-holder">
-        <select class="type-select" v-if="this.search ===  'types'" v-model="output">
+       <div class='type-select-holder' v-if="this.search ===  'types'">
+      <h3>Search By Speices:</h3>
+        <select class="type-select" v-model="output">
           <option
             v-bind:key="tree.id"
             v-for="tree in trees"
             v-bind:value="tree.id"
           >{{tree.common_name}} {{tree.botanical_name}}</option>
         </select>
+       </div>   
         <div v-else-if="this.search === 'locations' ">
+    <div class="sub-title"> 
+      <h3>Search By Location's:</h3>
+    </div>
+      
+         <div class='location-select-holder'>
           <input
             class="location-input"
             v-show="selected === false"
@@ -24,17 +32,22 @@
             <a class="x" @click="selected = false, output = ''">X</a>
             <h3>{{location.address}} {{location.name}}</h3>
           </div>
+         </div>
         </div>
 
         <div v-else>
-          <h1 class="diameter-input">{{this.numOutput}} inches</h1>
+      <h3 class='diameter-title'>Search By Diameter at Breast height:</h3>
+
+<label class="diameter-label" id="label"> 
+            <input class='diameter-input' type='number' v-model="numOutput"/>
+  inches</label>
+
           <button class="plus" v-show="this.numOutput < 124" v-on:click.prevent="plus">+</button>
           <button class="minus" v-show="this.numOutput > 0" v-on:click.prevent="minus">-</button>
         </div>
-        <!-- <input type="range" v-else name="tree-selector"  min='0' max='125' v-model="numOutput"/> -->
-        <!-- <h6>{{this.trees[this.numOutput].dbh_trunk}}</h6> -->
-        <input type="submit" value="submit" id="submit" class="btn" @submit.prevent="searchTree" />
+      
       </div>
+        <input type="submit" value="submit" id="submit" class="btn" @submit.prevent="searchTree" />
     </form>
     <div class="suggestion-container" v-if="this.output.length > 0" v-show="selected === false">
       <div
@@ -79,8 +92,14 @@ export default {
       let conditonialOutput =
         this.search === "diameters" ? this.numOutput : this.output;
       if (conditonialOutput === "") {
-        alert("hit");
-      } else {
+        this.$emit('outputError', 'Error: empty search, try another!');
+      } 
+
+      else if (this.search === 'locations' &&  !this.suggestions.includes(this.output) ) {
+       console.log('smack my bitch bbbup')
+               return  this.$emit('outputError', 'Error: Location not in data base, try another!');
+      }
+      else {
         this.$http.plain
           .get(`/${this.search}/${conditonialOutput}`)
           .then(response => this.$emit("setTrees", response.data))
@@ -96,12 +115,13 @@ export default {
         .catch(err => console.log(":(", err));
     },
     plus() {
-      this.numOutput = this.numOutput + 1;
+      this.numOutput++;
     },
     minus() {
-      this.numOutput = this.numOutput - 1;
+      this.numOutput--;
     },
     autocomplete(e) {
+      
       if (e.which === 40 && this.suggestions.length > 0 && this.focusCounter < 9) {
         this.focusCounter = this.focusCounter + 1;
         this.id = this.suggestions[this.focusCounter].id;     
@@ -113,7 +133,9 @@ export default {
     
       } else if (e.which ===  13 && this.suggestions.length > 0) {
         this.help(this.suggestions[this.focusCounter]);
+        console.log('hit')
       } 
+      
       else {
        
        if (this.output.length === 0) {
@@ -130,9 +152,13 @@ export default {
       }
     },
     help(value) {
-      this.location = value;
-      this.selected = true;
-      this.output = value.id;
+         let hasLocation = this.suggestions.includes(value) 
+          console.log(hasLocation);
+    
+           this.location = value;
+            this.selected = true;
+            this.output = value.id;
+       
     }
   },
 
@@ -158,61 +184,177 @@ export default {
 /* @media only screen and (max-width: 414px) {} */
 #search-holder {
   display: flex;
-  width: 96%;
+  width: 100%;
   position: absolute;
+  /* text-align:center; */
   top: 3em;
-  left: 2em;
+  left: 0em;
   /* overflow: hidden; */
 }
-.diameter-input {
+.diameter-title {
+  text-align: center;
+  margin-left: 9em;
+}
+.diameter-label {
   position: absolute;
-  left: 1.5em;
-  top: 0.05em;
+  /* left: 1.5em; */
+  top: 2em;
+}
+#label {
+  font-size: 24px;
+  font-weight: bold;
+}
+.diameter-input {
+border: none;
+background-color: transparent;
+text-align: right;
+font-size: 3em;
+width: 3em;
+  opacity: .5;
+
+}
+.diameter-input:focus {
+  appearance: none;
+  outline: none;
+  color: #157A6E;
+  opacity: 1;
+}
+.diameter-input::-webkit-outer-spin-button,
+.diameter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .plus {
   position: absolute;
-  top: 2.8em;
+width: 3em;
+    height: 2em;
+  top: 5em;
   right: 11.5em;
+  border-bottom-left-radius: 1em;
+    border-top-left-radius: 1em;
+    border: solid 3px #44CF6C;
+    background-color: #44CF6C;
+    font-size: 1em;
+    opacity: .5;
+    transition: 3ms;
+
+
+
+}
+.plus:hover{
+  opacity: 1;
+  transition: 3ms;
+  background-color: transparent;
+  /* color: #44CF6C; */
+}
+.plus:focus {
+  outline: none;
 }
 .minus {
   position: absolute;
-  right: 9.9em;
-  top: 2.8em;
+  width: 3em;
+    height: 2em;
+  right: 8em;
+  top: 5em;
+  border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+        border: solid 3px #44CF6C;
+      background-color: transparent;
+    /* color: #44CF6C; */
+    font-size: 1em;
+    opacity: .5;
+  transition: 3ms;
+  font-weight: bold;
+
+}
+.minus:hover{
+  opacity: 1;
+    background-color: #44CF6C;
+    transition: 3ms;
+
+}
+.minus:focus {
+  outline: none;
+}
+
+.type-select-holder {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 3em;
+  margin-top:0;
 }
 .type-select {
-  width: 96%;
-  position: relative;
-  top: 3.5em;
+  width: 100%;
+   background: #222;
+  color: #fff;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: .2em;
+
+
+  
+}
+.type-select:focus {
+  outline: none;
 }
 #submit {
   position: absolute;
-  right: 2em;
-  top: 8.4em;
+  right: 1em;
+  top: 14.4em;
   height: 2.3em;
   width: 6em;
   border-radius: 0.5em;
-  background-color: darkolivegreen;
+  color: white;
+  background-color: #157A6E;
+  /* background-color: #243119; */
+}
+.sub-title {
+  width: 120%;
+  text-align: center;
+}
+
+.location-select-holder {
+    /* height: 1em;
+    background: #222;
+    /* display: block; */
+    /* position: relative; */
+    /* margin: 3em; */ 
+      width: 100%;
+  display: block;
+  text-align: center;
+  margin: 3em;
+  margin-top: 0;
 }
 .location-input {
-  position: absolute;
-  top: 1.5em;
-  width: 84%;
-  max-width: 19em;
+  width: 98%;
+min-width: 19em;
+  border: none;
+  border-radius: 1.3em;
+  font-size: 1.3em;
+  padding: .2em;
   background: #222;
-  border: 0;
-  font-size: 25px;
   color: #fff;
+  padding-left: .4em 
+}
+.location-input:focus {
+  outline: none;
+
 }
 .selected-location {
-  width: 80%;
-  max-width: 26em;
-  text-align: center;
-  margin: none;
-  background-color: #888;
-  position: absolute;
-  left: 4em;
-  top: 2em;
-  border-radius: 1em;
+min-width: 23em;
+    padding: .3em;
+    /* max-width: 26em; */
+    text-align: center;
+    margin: none;
+    /* margin: 3em; */
+    background-color: #222;
+    color: #fff;
+    /* position: absolute; */
+    /* left: 4em; */
+    position: relative;
+    top: -1em;
+    border-radius: 2em;
 }
 
 .x {
@@ -242,8 +384,8 @@ export default {
 }
 .suggestion-container {
   position: absolute;
-  left: 2em;
-  top: 8em;
+  left: 4em;
+  top: 8.5em;
   width: 80%;
   max-width: 29.99em;
 }

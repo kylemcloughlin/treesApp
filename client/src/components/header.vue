@@ -46,7 +46,7 @@ export default {
 </script>
 <style scoped>
   .header{
-    background: #333;
+    background: #292f36;
     color: #fff;
     text-align: center;
     padding: 10px;
@@ -60,15 +60,32 @@ export default {
 .header h2 {
   position: absolute;
   top: 29px;
+  font-family: 'PT Sans', sans-serif;
   left: 1.7em;
 
 }
   .back-btn {
     position: relative;
     width: 4em;
-    height: 3em;
+    height: 4em;
     left: 44%;
-    top: .5em;
+    top: 1.5em;
+    color: white;
+    background-color: transparent;
+    border: white solid 1px;
+    border-radius: 4em;
+    opacity: .7;
+    transition: 3ms;
+    box-shadow: 0px 0.5px 2px 0px;
+  }
+  .back-btn:hover{
+    opacity: 1;
+    background-color: white;
+    color: #292f36;
+    /* box-shadow: 0px 0.5px 2px 0px; */
+
+
+
   }
   .img {
     position: absolute;

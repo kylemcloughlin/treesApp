@@ -1,7 +1,7 @@
 <template>
 <div>
   <form>
-     <input  v-bind:class="this.msg === 'diameters' ? 'selected' : '' " type="submit" value="Diameter" class='btn' v-on:click.stop="click" v-bind:id="[msg === 'diameters' ? this.activeId : '']"/>
+     <input  v-bind:class="this.msg === 'diameters' ? 'selected' : '' " type="submit" value="Diameter" class='btn' v-on:click.stop="click" />
   </form>
 </div>
 </template>
@@ -38,11 +38,10 @@ export default {
 </script>
 <style scoped>
 .selected {
-  transition: .25s;
-  background-color: teal;
+  transition: .2s;
+  background-color: #157a6e;
+  color: white;
+  opacity: 1;
 }
-#active-id {
-  border-bottom: none; 
-  /* background-color: black; */
-}
+
 </style>
