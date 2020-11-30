@@ -95,8 +95,8 @@ export default {
         this.$emit('outputError', 'Error: empty search, try another!');
       } 
 
-      else if (this.search === 'locations' &&  !this.suggestions.includes(this.output) ) {
-       console.log('smack my bitch bbbup')
+      else if (this.search === 'locations' &&  !this.suggestions.includes(this.location) ) {
+
                return  this.$emit('outputError', 'Error: Location not in data base, try another!');
       }
       else {
@@ -152,8 +152,6 @@ export default {
       }
     },
     help(value) {
-         let hasLocation = this.suggestions.includes(value) 
-          console.log(hasLocation);
     
            this.location = value;
             this.selected = true;

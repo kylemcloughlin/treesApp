@@ -3,7 +3,7 @@
     <Header msg="trees App" v-on:backBtn="backBtn" v-bind:show="this.back" />
     <div class="home-page">
       <h1>Toronto's Street Tree Database</h1>
-      <h3>The Urban Forest Department’s compiled inventory of City and privately-owned Street Trees.</h3>
+      <h3 class="secondary-info">The Urban Forest Department’s compiled inventory of City and privately-owned Street Trees.</h3>
       <VueSlideUpDown :active="error" :duration="500">
       <div class="error" ref='error'>
         <h3 class='error-message'>{{this.errorMes}}</h3>
@@ -151,6 +151,9 @@ body {
   border-top-right-radius: 1em;
   border-bottom-left-radius: 1em;
 }
+.secondary-info{
+  color: #888;
+}
 .home-page {
   text-align: center;
 
@@ -170,6 +173,7 @@ body {
 }
 .error-message {
   padding-top: 1em;
+  opacity: .8;
 }
 .button-bar {
   width: 100%;
