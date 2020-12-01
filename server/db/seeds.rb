@@ -5,7 +5,7 @@
 require "rgeo"
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# Dir.glob("#{Rails.root}/db/seeds/*.rb").each { |f| require f }
+Dir.glob("#{Rails.root}/db/seeds/*.rb").each { |f| require f }
 
 
 puts "begining to extract and seed data base........."

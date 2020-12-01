@@ -127,13 +127,13 @@ export default {
         this.id = this.suggestions[this.focusCounter].id;     
     
       } else if (e.which === 38 && this.suggestions.length > 0 && this.focusCounter > 0) {
-        console.log("-first focus counter:", this.focusCounter);
+        // console.log("-first focus counter:", this.focusCounter);
         this.focusCounter = this.focusCounter - 1;
         this.id = this.suggestions[this.focusCounter].id;
     
       } else if (e.which ===  13 && this.suggestions.length > 0) {
         this.help(this.suggestions[this.focusCounter]);
-        console.log('hit')
+        // console.log('hit')
       } 
       
       else {
