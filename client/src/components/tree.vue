@@ -15,7 +15,10 @@ props: {
 },
 methods: {
   openInfoWindow(tree){
-   return this.$emit('infoWindow', tree);
+    if (tree.lat !== null) {
+      return this.$emit('infoWindow', tree);
+        
+    }
   }
 
 }

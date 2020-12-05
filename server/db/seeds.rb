@@ -23,35 +23,31 @@ raw.each do |x|
 
     diameter = Diameter.find_or_create_by({
       dbh_trunk: x["dbh_trunk"],
+      total: 0
+
     })
     type = Type.find_or_create_by({
       common_name: x["common_nam"],
       botanical_name: x["botanical_"],
+      total: 0
     })
 
     location = Location.find_or_create_by ({
-                                            address: x["address"],
+                                            # address: 0,
                                             name: x["name"],
-                                            geo_id: x["geo_id"],
-                                            x: x["x"],
-                                            y: x["y"],
-                                            struct_id: x["structid"],
+                                            total: 0                                            
+                                            # geo_id: x["geo_id"],
+                                            # x: x["x"],
+                                            # y: x["y"],
+                                            # struct_id: x["structid"],
                                           })
 factory = RGeo::GeoJSON::EntityFactory.instance
 feature = factory.feature x["geometry"]
 hash = RGeo::GeoJSON.encode feature
 
-# puts " dbh: #{x["dbh_trunk"]}"
-# puts " addy: #{x["address"]}"
-# puts " name: #{x["name"]}"
-# puts " tree pos: #{x["tree_posit"]}"
-# puts " GEO ID: #{x["geo_id"]}"
-# puts " STRUCT ID: #{x["structid"]}"
-# puts " X: #{x["x"]}"
-# puts " Y: #{x["y"]}"
 
-puts "lat: #{hash["geometry"]["coordinates"][0]}"
-puts "long: #{hash["geometry"]["coordinates"][1]}"
+# puts "lat: #{hash["geometry"]["coordinates"][0]}"
+# puts "long: #{hash["geometry"]["coordinates"][1]}"
 
     tree = Tree.create({
       common_name: x["common_nam"],
@@ -66,13 +62,27 @@ puts "long: #{hash["geometry"]["coordinates"][1]}"
       location: location,
       diameter: diameter,
     })
-    puts "@@@@@@@@@"
-    puts tree.id
-    puts tree.common_name
-    puts "counter#{counter}"
     counter = counter + 1
-    puts "counter#{counter}"
-    puts "@@@@@@@@@"
+    puts "counter: #{counter}, #{tree.common_name}, #{tree.id} <=@@@@@@@@@"
   end
+newtype = Type.all
+newlocation = Location.all
+newdiameter = Diameter.all 
+newtype.each do |x|
+puts "111111... "
+x.update( total: x.trees.length())
+# puts " 1111111#{x.common_name} this is updated, total: #{x.total}"
+end
 
-  puts "finished!!!"
+puts "...222222... "
+newlocation.each do |x|
+x.update( total: x.trees.length())
+# puts " 222222222#{x.name} is updated, total: #{x.total}"
+end
+puts ".....33333333333... "
+newdiameter.each do |x|
+
+x.update( total: x.trees.length())
+# puts "33333333333 #{x.dbh_trunk} is updated, total: #{x.total}"
+end
+  puts "......finished!!!"

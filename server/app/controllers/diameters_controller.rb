@@ -10,8 +10,24 @@ class DiametersController < ApplicationController
 
   # GET /diameters/1
   def show
-  #  byebug
-    render json: @diameter.trees
+if params[:info_panel]
+ count = params[:count].to_i
+math_helper = count / 250
+math_helper = math_helper + 1
+new_length = 250 * math_helper
+
+holder = @diameter.trees.first(new_length)
+output = holder[count..new_length]
+
+render json: output
+else
+  puts "hohoho"
+  render json: @diameter.trees.first(250)
+  
+end
+    
+
+
   end
 
   # POST /diameters
@@ -49,6 +65,6 @@ class DiametersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def diameter_params
-      params.require(:diameter).permit(:dbh_trunk)
+      params.require(:diameter).permit(:dbh_trunk, :info_panel, :count)
     end
 end

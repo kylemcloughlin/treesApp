@@ -4,7 +4,7 @@ import VueAxios from 'vue-axios'
 import {securedAxiosInstance, plainAxiosInstance } from './assets/backend/axios'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import {KEY} from '.././fakeENV.js'
-// import VueSlideUpDown from 'vue-slide-up-down';
+
 
 
 Vue.config.productionTip = false;
@@ -15,15 +15,11 @@ Vue.use(VueAxios, {
 Vue.use(VueGoogleMaps, {
   load: {
     key: KEY,
-    // libraries: 'places', // This is required if you use the Autocomplete plugin
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
-    // (as you require)
+ 
   },
-  //// If you want to set the version, you can do so:
-  // v: '3.26',
+
 })
-// Vue.use(VueSlideUpDown);
+
 
 new Vue({
   render: h => h(App),

@@ -4,15 +4,38 @@ class TypesController < ApplicationController
   # GET /types
   def index
     @types = Type.all.order(:common_name)
-
+    
     render json: @types
   end
 
   # GET /types/1
   def show
-    render json: @type.trees
-  end
-
+    if params[:info_panel] 
+     count = params[:count].to_i
+     puts "COUNT : #{count}"
+     math_helper = count / 250 
+     puts "MATHHELPER  #{math_helper}"
+     math_helper = math_helper + 1
+    puts "MATHHELPER *new* #{math_helper}"
+      new_length = 250 * math_helper
+      puts "NEW LENGTH #{new_length}"
+      # puts new_length
+      holder = @type.trees.first(new_length)
+      output = holder[count..new_length]
+      puts output.first[:name]
+      puts output.last[:name]
+      
+      puts output.size
+      # @type.trees do|x|
+      #   puts x
+      # end      
+   
+     render json: output
+    else
+        puts 'hohoho'
+      render json: @type.trees.first(250)
+    end
+end
   # POST /types
   def create
     @type = Type.new(type_params)
@@ -26,6 +49,7 @@ class TypesController < ApplicationController
 
   # PATCH/PUT /types/1
   def update
+    byebug
     if @type.update(type_params)
       render json: @type
     else
@@ -42,10 +66,11 @@ class TypesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_type
       @type = Type.find(params[:id])
+
     end
 
     # Only allow a trusted parameter "white list" through.
     def type_params
-      params.require(:type).permit(:common_name, :botanical_name)
+      params.require(:type).permit(:common_name, :botanical_name, :info_panel, :count)
     end
 end

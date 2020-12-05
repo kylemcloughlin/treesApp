@@ -3,13 +3,14 @@
     <Header msg="trees App" v-on:backBtn="backBtn" v-bind:show="this.back" />
     <div class="home-page">
       <h1>Toronto's Street Tree Database</h1>
-      <h3 class="secondary-info">The Urban Forest Department’s compiled inventory of City and privately-owned Street Trees.</h3>
+      <h3
+        class="secondary-info"
+      >The Urban Forest Department’s compiled inventory of City and privately-owned Street Trees.</h3>
       <VueSlideUpDown :active="error" :duration="500">
-      <div class="error" ref='error'>
-        <h3 class='error-message'>{{this.errorMes}}</h3>
-      </div>
- 
-  </VueSlideUpDown>
+        <div class="error" ref="error">
+          <h3 class="error-message">{{this.errorMes}}</h3>
+        </div>
+      </VueSlideUpDown>
     </div>
     <div v-show="formShow">
       <div class="form-holder">
@@ -36,7 +37,10 @@
         v-if="formShow === false"
         v-bind:outputTrees="this.searchedTrees"
         v-bind:searched="this.baseSearch"
+        v-bind:total="this.total"
+        v-bind:postID="this.postID"
         v-on:panelClick="panelClick"
+        v-on:moreTrees="moreTrees"
       />
     </div>
   </div>
@@ -50,7 +54,7 @@ import SearchBar from "./components/SearchBar";
 import Species from "./components/species";
 import Map from "./components/map";
 import InfoPanel from "./components/infoPanel";
-import VueSlideUpDown from 'vue-slide-up-down';
+import VueSlideUpDown from "vue-slide-up-down";
 export default {
   name: "App",
   components: {
@@ -65,20 +69,22 @@ export default {
   },
   methods: {
     outputError(x) {
-     
       this.errorMes = x;
       this.error = true;
-      setTimeout(() => { this.error = false;}, 3000);
+      setTimeout(() => {
+        this.error = false;
+      }, 3000);
+    },
+    moreTrees(array) {
+      this.searchedTrees = [...this.searchedTrees, ...array];
     },
     panelClick(tree) {
-
       this.InfoPanelTree = tree;
     },
     setSearch(x) {
       if (x === "types") {
         this.baseSearch = x;
         this.msg = x;
-
       } else if (x === "locations") {
         this.baseSearch = x;
         this.msg = x;
@@ -88,14 +94,14 @@ export default {
       }
     },
     setTrees(x) {
-      this.searchedTrees = x;
+      this.searchedTrees = x.data;
+      this.total = x.total;
+      this.postID = x.postID;
       this.back = true;
       return (this.formShow = false);
     },
     backBtn(x) {
-      if (x === false) {
-        console.log();
-      } else {
+      if (x === true) {
         this.back = false;
 
         this.output = "";
@@ -115,6 +121,8 @@ export default {
       InfoPanelTree: {},
       errorMes: "",
       error: false,
+      total: null,
+      postID: 0
     };
   }
 };
@@ -129,7 +137,6 @@ body {
   transition: 3ms;
 }
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #292f36;
@@ -151,7 +158,7 @@ body {
   border-top-right-radius: 1em;
   border-bottom-left-radius: 1em;
 }
-.secondary-info{
+.secondary-info {
   color: #888;
 }
 .home-page {
@@ -161,19 +168,18 @@ body {
 }
 
 .error {
-  background-color: #ED1C24;
+  background-color: #ed1c24;
   color: white;
-  width: 30%;
+  max-width: 27em;
   height: 7em;
   margin: auto;
   border-radius: 6px;
-  border: 3px solid #ED1C50;
+  border: 3px solid #ed1c50;
   opacity: 0.8;
-
 }
 .error-message {
   padding-top: 1em;
-  opacity: .8;
+  opacity: 0.8;
 }
 .button-bar {
   width: 100%;
@@ -196,11 +202,8 @@ body {
 .btn:focus {
   outline: none;
   box-shadow: none;
-  /* background-color: #157a6e; */
-  /* transition: 0.3s; */
 }
 .btn:hover {
-  /* background-color: black; */
   opacity: 1;
 }
 .btn-helper {
@@ -214,7 +217,7 @@ body {
 .output-holder {
   width: 100%;
   position: relative;
-  top: 3em;
+  top: 1em;
   display: flex;
   margin: auto;
 }
@@ -229,7 +232,6 @@ body {
   }
   .type-select {
     top: 3.2em !important;
-    /* left: 0.5em; */
   }
   .map-div {
     width: 93%;
@@ -255,7 +257,6 @@ body {
 @media only screen and (max-width: 950px) {
   .vue-map-container {
     width: 780px !important;
-    /* height: 600px !important; */
   }
   .location-input {
     min-width: 17em !important;
@@ -272,7 +273,6 @@ body {
 @media only screen and (max-width: 850px) {
   .vue-map-container {
     width: 680px !important;
-    /* height: 600px !important; */
   }
   .location-input {
     min-width: 15em !important;
@@ -363,7 +363,6 @@ body {
 @media only screen and (max-width: 414px) {
   .vue-map-container {
     width: 334px !important;
-    /* width: 50% */
   }
 
   .type-select {

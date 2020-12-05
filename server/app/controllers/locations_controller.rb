@@ -3,14 +3,38 @@ class LocationsController < ApplicationController
 
   # GET /locations
   def index
-    @locations = Location.all
 
-    render json: @locations
+    if params[:autocomplete]
+       params[:output] 
+    @locations = Location.where("lower(name) LIKE lower(?)", "%#{params[:output]}%")
+        
+      
+      render json: @locations
+    else
+      puts "TEST: #{Location.all.length()}!!!!!!!"
+      @locations = Location.first(250)
+      
+      render json: @locations
+    end
   end
 
   # GET /locations/1
-  def show
-    render json: @location.trees
+    def show
+if params[:info_panel]
+ count = params[:count].to_i
+math_helper = count / 250
+math_helper = math_helper + 1
+new_length = 250 * math_helper
+
+holder = @location.trees.first(new_length)
+output = holder[count..new_length]
+
+render json: output
+else
+  puts "hohoho"
+  render json: @location.trees.first(250)
+  
+end
   end
 
   # POST /locations
@@ -26,6 +50,7 @@ class LocationsController < ApplicationController
 
   # PATCH/PUT /locations/1
   def update
+
     if @location.update(location_params)
       render json: @location
     else
@@ -41,11 +66,12 @@ class LocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
+      # byebug
       @location = Location.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def location_params
-      params.require(:location).permit(:address, :name, :geo_id, :x, :y, :struct_id)
+      params.require(:location).permit(:address,:name,:autocomplete,:output,:info_panel, :count)
     end
 end
