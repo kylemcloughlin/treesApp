@@ -1,6 +1,5 @@
 
 # Toronto Street Trees
-=====================
 A Fullstack Web App built with vueJS, Ruby on Rails api, pgsql and Google API. user can search the city of toronto's records of over half a million trees by species, street name or diameter at breast height and displayed using the google maps api.
 
 ## Live
